@@ -6,8 +6,8 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "My Site",
-  tagline: "Dinosaurs are cool",
+  title: "Autonomous Underwater Vehicle Challenge",
+  tagline: "MIT Beaver Works Summer Institute 2023 - BLKSAIL",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -66,21 +66,21 @@ const config = {
       // Replace with your project's social card
       image: "img/docusaurus-social-card.jpg",
       navbar: {
-        title: "My Site",
+        title: "AUVC",
         logo: {
-          alt: "My Site Logo",
-          src: "img/logo.svg",
+          alt: "BWSI AUVC Logo",
+          src: "img/auvc_icon.png",
         },
         items: [
           {
             type: "docSidebar",
             sidebarId: "tutorialSidebar",
             position: "left",
-            label: "Tutorial",
+            label: "Course",
           },
-          { to: "/blog", label: "Blog", position: "left" },
+          { to: "/blog", label: "Announcements", position: "left" },
           {
-            href: "https://github.com/facebook/docusaurus",
+            href: "https://github.com/blksail-edu",
             label: "GitHub",
             position: "right",
           },
@@ -90,11 +90,15 @@ const config = {
         style: "dark",
         links: [
           {
-            title: "Docs",
+            title: "AUV Challenge",
             items: [
               {
-                label: "Tutorial",
+                label: "Course",
                 to: "/docs/intro",
+              },
+              {
+                label: "Announcements",
+                to: "/blog",
               },
             ],
           },
@@ -102,16 +106,8 @@ const config = {
             title: "Community",
             items: [
               {
-                label: "Stack Overflow",
-                href: "https://stackoverflow.com/questions/tagged/docusaurus",
-              },
-              {
                 label: "Discord",
                 href: "https://discordapp.com/invite/docusaurus",
-              },
-              {
-                label: "Twitter",
-                href: "https://twitter.com/docusaurus",
               },
             ],
           },
@@ -119,17 +115,25 @@ const config = {
             title: "More",
             items: [
               {
-                label: "Blog",
-                to: "/blog",
+                label: "GitHub",
+                href: "https://github.com/blksail-edu",
               },
               {
-                label: "GitHub",
-                href: "https://github.com/facebook/docusaurus",
+                label: "Twitter",
+                href: "https://twitter.com/blksail",
+              },
+              {
+                label: "blkSAIL",
+                href: "https://www.blksail.ai/",
+              },
+              {
+                label: "MIT BWSI",
+                href: "https://beaverworks.ll.mit.edu/CMS/bw/bwsi",
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} BLKSAIL, Inc.`,
       },
       prism: {
         theme: lightCodeTheme,
