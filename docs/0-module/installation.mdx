@@ -1,0 +1,86 @@
+---
+sidebar_position: 1
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Installation
+
+For this course, you will need a Mac or Ubuntu (GNU/Linux) machine.
+
+:::note
+
+If you are using Windows, you can run Ubuntu inside Windows thanks to [WSL](https://learn.microsoft.com/en-us/windows/wsl/install).
+
+:::
+
+## Package Manager
+
+First, let's get a package manager to help install the software that will be needed.
+
+<Tabs groupId="operating-systems">
+<TabItem value="macos" label="macOS">
+
+macOS doesn't come with a package manager by default, so we will install
+[Homebrew](https://brew.sh/).
+
+Open a terminal and run the following command:
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Once Homebrew is installed, you can install software by running
+
+```bash
+brew install <package-name>
+```
+
+</TabItem>
+<TabItem value="ubuntu" label="Ubuntu">
+
+Ubuntu comes with a package manager called `apt`. To install software, run
+
+```bash
+sudo apt install <package-name>
+```
+
+</TabItem>
+</Tabs>
+
+## Visual Studio Code
+
+We will be using [Visual Studio Code](https://code.visualstudio.com/) as our
+code editor.
+
+To install it, run
+
+<Tabs groupId="operating-systems">
+<TabItem value="macos" label="macOS">
+
+```bash
+brew install --cask visual-studio-code
+```
+
+</TabItem>
+<TabItem value="ubuntu" label="Ubuntu">
+
+```bash
+sudo apt install code
+```
+
+</TabItem>
+</Tabs>
+
+## Docker
+
+## Python
+
+### Pip
+
+## C/C++
+
+### CLang
+
+### CMake
