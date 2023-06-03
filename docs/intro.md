@@ -2,46 +2,48 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Course Introduction
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Welcome to the Autonomous Underwater Vehicle Challenge (AUVC) 2023!
+This comprehensive and practical course is designed to introduce you to the fascinating world of underwater robotics, equipping you with the skills and knowledge to program and operate off-the-shelf underwater robotic vehicles.
 
-## Getting Started
+## Course Overview
 
-Get started by **creating a new site**.
+Over the next four weeks, you will:
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+- Understand the fundamentals of underwater robotics and its applications.
+- Learn the principles of buoyancy, propulsion, and navigation in marine environments.
+- Get acquainted with Python and C++ programming languages and how to use them in controlling underwater robots.
+- Gain hands-on experience in programming and operating off-the-shelf underwater robotic vehicles.
+- Learn to process sensor data, develop control algorithms, and understand communication protocols for underwater systems.
+- Understand the steps involved in mission planning and execution for underwater robots.
+- Discuss real-world applications and challenges in underwater robotics.
+- Work on a final project that involves planning and executing a mission using an underwater robot.
 
-### What you'll need
+## Course Materials and Resources
 
-- [Node.js](https://nodejs.org/en/download/) version 16.14 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+Throughout the course, you will be provided with a variety of resources to facilitate your learning:
 
-## Generate a new site
+- Comprehensive course material, including lecture slides, readings, and exercises.
+- Access to Python and C++ programming tools and relevant software libraries.
+- Hands-on experience with off-the-shelf underwater robotic vehicles.
+- Guest lectures from industry professionals.
+- Continuous support and guidance from our expert instructors.
 
-Generate a new Docusaurus site using the **classic template**.
+## Final Project
 
-The classic template will automatically be added to your project after you run the command:
+The course concludes with a final project where you will plan and execute a mission using an underwater robot.
+This is a chance for you to put your newly acquired skills to test and gain real-world experience in handling an underwater robotics mission.
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+## Important Dates
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+- ** Course Start Date: _July 10th, 2023_ **
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+- ** Course End Date: _August 4th, 2023_ **
 
-## Start your site
+- ** Final Project Presentations: _TBD_ **
 
-Run the development server:
+---
 
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+Get ready to explore the underwater world like never before!
+Welcome aboard!
