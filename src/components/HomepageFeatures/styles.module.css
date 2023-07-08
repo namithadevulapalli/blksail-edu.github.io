@@ -10,9 +10,9 @@
   width: 200px;
 }
 
-.featureImg {
-  height: 320px;
-  width: 320px;
-  border-radius: 10%;
-  margin-right: 1rem;
+.featureImg > img{
+  /* width and height do not work due to plugin-ideal-image */
+  height: 200px;
+  width: 200px;
+  border-radius: 8px;
 }
