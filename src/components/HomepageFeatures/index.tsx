@@ -49,7 +49,7 @@ function Feature({ title, Svg, Img, description }: FeatureItem) {
     <div className={clsx("col col--4")}>
       <div className="text--center">
         {Svg && <Svg className={styles.featureSvg} role="img" />}
-        {Img && <Image img={Img} />}
+        {Img && <Image className={styles.featureImg} img={Img} />}
       </div>
       <div className="text--center padding-horiz--md">
         <h3>{title}</h3>
