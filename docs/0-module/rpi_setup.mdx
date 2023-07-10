@@ -1,0 +1,70 @@
+---
+sidebar_position: 3
+---
+
+# Raspberry Pi Setup
+
+During this course, we will be using a Raspberry Pi 4B as our main computer.
+This section will walk you through the steps to get your Raspberry Pi up and running.
+
+The Raspberry Pi is a small, single-board computer that can be used for a variety of projects.
+It is a great tool for learning about computers and programming, and it is also a great tool for building projects.
+
+## What you will need
+
+- Raspberry Pi 4 (provided by the course)
+- a microSD card (provided by the course)
+- a USB-C cable (provided by the course)
+- a computer with a USB port.
+
+## Setting up the Raspberry Pi
+
+The RPi has a microSD card slot on the bottom.
+Insert the microSD card into the slot, and connect the RPi to your computer using the USB-C cable.
+The RPi will power on automatically.
+
+:::tip
+If you are using a Windows computer, you may need to install a driver for the RPi.
+You can download the driver [here](https://modclouddownloadprod.blob.core.windows.net/shared/mod-duo-rndis.zip).
+
+1. Download and extract the zip file.
+2. Open `Device Manager` on your computer and locate `COM & LPT ports`.
+3. Connect the RPi to your computer and locate the new device (it should be called `COM PORT ...`).
+4. Right-click on the device and select `Update Driver Software`.
+5. Browse to the folder where you extracted the zip file.
+6. Install the driver.
+
+Check that the driver was installed by opening a terminal and running the following command:
+
+```bash
+ping backseat.local
+```
+
+:::
+
+## Connecting to the Raspberry Pi
+
+Once the RPi is powered on, you can connect to it using SSH.
+We will be using Visual Studio Code to connect to the RPi.
+
+1. Open Visual Studio Code.
+2. Install the [Remote - SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh) extension.
+3. Click on the `Remote Explorer` icon in the left sidebar.
+4. Click on the `SSH Targets` icon at the top of the sidebar.
+5. Click on the `+` icon at the top of the sidebar.
+6. Enter the following command in the input field:
+
+```bash
+ssh blue@backseat.local
+```
+
+The default password is `iamblue`.
+
+Once connected, you should see a terminal window in Visual Studio Code (bottom).
+You can now run commands on the RPi.
+
+For example, you can now run the following command to check the IP address of the RPi:
+
+```bash
+hostname -I
+```
