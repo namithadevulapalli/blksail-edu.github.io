@@ -60,6 +60,25 @@ ssh blue@backseat.local
 
 The default password is `iamblue`.
 
+:::note
+
+You might be prompted to select a `config` file.
+If so, select `~/.ssh/config` or `C:\Users\<username>\.ssh\config`.
+
+:::
+
+:::note
+
+If you are asked to accept the host key, type `yes` and press `Enter`.
+
+:::
+
+:::note
+
+If you are asked the operating system of the remote host, select `Linux`.
+
+:::
+
 Once connected, you should see a terminal window in Visual Studio Code (bottom).
 You can now run commands on the RPi.
 
@@ -68,3 +87,115 @@ For example, you can now run the following command to check the IP address of th
 ```bash
 hostname -I
 ```
+
+## Creating a new user
+
+The default user on the RPi is `blue`.
+We will be using a new user for you for this course.
+
+1. Run the following command to create a new user:
+
+```bash
+sudo adduser <username>
+```
+
+2. Enter a password for the new user.
+3. Enter the password again to confirm.
+4. Enter a full name for the new user.
+5. Press `Enter` to skip the rest of the prompts.
+
+## Setting up the new user
+
+1. Run the following command to add the new user to the `sudo` group:
+
+```bash
+sudo usermod -aG sudo <username>
+```
+
+2. Run the following command to switch to the new user:
+
+```bash
+su <username>
+```
+
+3. Run the following command to create a new SSH key:
+
+```bash
+ssh-keygen -t ed25519 -C "<username>@backseat.local"
+```
+
+4. Press `Enter` to save the key in the default location.
+5. Press `Enter` to skip the passphrase prompt.
+
+## Connecting to the Raspberry Pi using the new user
+
+Similar to the previous section, you can now connect to the RPi using the new user.
+
+1. Click on the `Remote Explorer` icon in the left sidebar.
+2. Click on the `SSH Targets` icon at the top of the sidebar.
+3. Click on the `+` icon at the top of the sidebar.
+4. Enter the following command in the input field:
+
+```bash
+ssh <username>@backseat.local
+```
+
+5. Enter the password for the new user.
+
+You are now connected to the RPi using the new user you just created.
+
+## Setting up the RPi for the course
+
+For this course, we will be using a few tools that are not installed by default on the RPi.
+We will now install these tools.
+
+### ZSH
+
+`zsh` is a Unix shell that can be used as an interactive login shell and as a
+command interpreter for shell scripting. Zsh is an extended Bourne shell with a
+large number of improvements, including some features of Bash, ksh, and tcsh.
+
+We will be using `zsh` as our default shell in this course.
+
+#### Install
+
+```bash
+sudo apt install zsh
+```
+
+#### Set as default shell
+
+Set `zsh` as default shell:
+
+```bash
+chsh -s $(which zsh)
+```
+
+#### Restart shell
+
+Restart the shell:
+
+```bash
+exec zsh
+```
+
+#### Oh-My-Zsh
+
+[Oh-My-Zsh](https://ohmyz.sh/) is an open source, community-driven framework
+for managing your zsh configuration (and it comes with a bunch of plugins and
+themes).
+
+##### Install
+
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+#### `.zshrc`
+
+The `.zshrc` file is a script that is executed each time a new `zsh` shell is
+started. It is located in your home directory (`~/.zshrc`).
+
+You can edit the `.zshrc` file with your favorite text editor.
+
+We will be adding some configuration to the `.zshrc` file in the next sections.
