@@ -191,6 +191,40 @@ The thruster can rotate $30^\circ$ in either direction of the $x$-axis.
 - The function should take the following arguments:
   - `F_magnitude`: the magnitude of force applied by the thruster in Newtons.
   - `F_angle`: the angle of the force applied by the thruster in radians.
+  - `inertia` (optional): the moment of inertia of the AUV in $kg \cdot m^2$.
+    The default value is $1 kg \cdot m^2$.
+  - `thruster_distance` (optional): the distance from the center of mass of the AUV to the thruster in meters.
+    The default value is $0.5 m$.
+- The function should return the angular acceleration of the AUV in radians per second squared.
+
+### Problem 9
+
+And AUV is submerged in water.
+The AUV has 4 thrusters fixed to the body of the AUV with and angle $\alpha$.
+Each thruster applies a force $T_i$ to the AUV, where $i$ is the thruster number.
+The thrusters are offset from the center of mass of the AUV by a distance $L$ longitudinally and $l$ laterally, in the robot frame.
+
+![AUV Configuration](./P9.jpg)
+
+1. Write a Python function, `calculate_auv2_acceleration`,
+   that calculates the acceleration of the AUV in the 2D plane.
+
+- The function should take the following arguments:
+  - `T`: an `np.ndarray` of the magnitudes of the forces applied by the thrusters in Newtons.
+  - `alpha`: the angle of the thrusters in radians.
+  - `mass` (optional): the mass of the AUV in kilograms.
+    The default value is $100 kg$.
+
+2. Write a Python function, `calculate_auv2_angular_acceleration`,
+   that calculates the angular acceleration of the AUV.
+
+- The function should take the following arguments:
+  - `T`: an `np.ndarray` of the magnitudes of the forces applied by the thrusters in Newtons.
+  - `alpha`: the angle of the thrusters in radians.
+  - `L`: the distance from the center of mass of the AUV to the thrusters in meters.
+  - `l`: the distance from the center of mass of the AUV to the thrusters in meters.
+  - `inertia` (optional): the moment of inertia of the AUV in $kg \cdot m^2$.
+    The default value is $100 kg \cdot m^2$.
 
 ## Communication
 
