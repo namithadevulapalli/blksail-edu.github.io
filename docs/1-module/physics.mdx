@@ -29,7 +29,7 @@ Create a new Python file called `physics.py` in your repository for this section
 
 :::
 
-### Problem 1:
+### Problem 1
 
 - Write a Python function, `calculate_buoyancy`,
   that calculates the buoyancy force exerted on a object submerged in water.
@@ -40,7 +40,7 @@ Create a new Python file called `physics.py` in your repository for this section
   `g` is a constant equal to $9.81 m/s^2$.
 - The function should return the buoyancy force in Newtons.
 
-### Problem 2:
+### Problem 2
 
 - Write a Python function, `will_it_float`,
   that determines whether an object will float or sink in water.
@@ -61,7 +61,7 @@ where $\rho$ is the density of the fluid,
 $g$ is the gravitational acceleration,
 and $h$ is the depth.
 
-### Problem 3:
+### Problem 3
 
 - Write a Python function, `calculate_pressure`,
   that calculates the pressure at a given depth in water.
@@ -72,10 +72,119 @@ and $h$ is the depth.
   and the density of water is $1000 kg/m^3$.
 - The function should return the pressure in Pascals.
 
-## Commnuication
+## Equations of Motions (Newton's 2nd Law)
+
+### Translational Motion
+
+Let's look at Newton's 2nd law of motion:
+
+$$
+F = m \cdot a
+$$
+
+where $F$ is the force applied to an object,
+$m$ is the mass of the object,
+and $a$ is the acceleration of the object.
+
+### Rotational Motion
+
+Newton's 2nd law of motion can also be applied to rotational motion:
+
+$$
+\tau = I \times \alpha
+$$
+
+where $\tau$ is the torque applied to an object,
+$I$ is the moment of inertia of the object,
+and $\alpha$ is the angular acceleration of the object.
+
+The torque $\tau$ is given by the following equation:
+
+$$
+\tau = r \times F
+$$
+
+where $r$ is the distance from the axis of rotation to the point where the force is applied,
+and $F$ is the force applied to the object.
+
+The moment of inertia $I$ is given by the following equation:
+
+$$
+I = \sum_i m_i \cdot r_i^2
+$$
+
+where $m_i$ is the mass of the $i$th particle,
+and $r_i$ is the distance from the axis of rotation to the $i$th particle.
+
+:::info
+In our case, we will be dealing with a rigid body.
+Therefore, we can use the following equation to calculate the moment of inertia:
+
+$$
+I = m \cdot r^2
+$$
+
+where $m$ is the mass of the object,
+and $r$ is the distance from the axis of rotation to the center of mass of the object.
+:::
+
+### Problem 4
+
+- Write a Python function, `calculate_acceleration`,
+  that calculates the acceleration of an object given the force applied to it and its mass.
+- The function should take the following arguments:
+  - `F`: the force applied to the object in Newtons,
+  - `m`: the mass of the object in kilograms.
+
+### Problem 5
+
+- Write a Python function, `calculate_angular_acceleration`,
+  that calculates the angular acceleration of an object given the torque applied to it and its moment of inertia.
+- The function should take the following arguments:
+  - `tau`: the torque applied to the object in Newton-meters,
+  - `I`: the moment of inertia of the object in $kg \cdot m^2$.
+
+### Problem 6
+
+- Write a Python function, `calculate_torque`,
+  that calculates the torque applied to an object given the force applied to it and the distance from the axis of rotation to the point where the force is applied.
+- The function should take the following arguments:
+  - `F`: the force applied to the object in Newtons,
+  - `r`: the distance from the axis of rotation to the point where the force is applied in meters.
+
+### Problem 7
+
+- Write a Python function, `calculate_moment_of_inertia`,
+  that calculates the moment of inertia of an object given its mass and the distance from the axis of rotation to the center of mass of the object.
+- The function should take the following arguments:
+  - `m`: the mass of the object in kilograms,
+  - `r`: the distance from the axis of rotation to the center of mass of the object in meters.
+
+### Problem 8
+
+An AUV is submerged in water.
+The AUV has a mass of $100 kg$ and a volume of $0.1 m^3$.
+The AUV is equipped with a thruster that can apply a force up to $100 N$.
+The thruster is located $0.5 m$ from the center of mass of the AUV.
+The thruster can rotate $30^\circ$ in either direction of the $x$-axis.
+
+1. Write a Python function, `calculate_auv_acceleration`,
+   that calculates the acceleration of the AUV in the 2D plane.
+
+- The function should take the following arguments:
+  - `F_magnitude`: the magnitude of force applied by the thruster in Newtons.
+  - `F_angle`: the angle of the force applied by the thruster in radians.
+- The function should return the acceleration of the AUV in meters per second squared.
+
+2. Write a Python function, `calculate_auv_angular_acceleration`,
+   that calculates the angular acceleration of the AUV.
+
+- The function should take the following arguments:
+  - `F_magnitude`: the magnitude of force applied by the thruster in Newtons.
+  - `F_angle`: the angle of the force applied by the thruster in radians.
+
+## Communication
 
 ### Electromagnetic
 
 ### Acoustic
-
-## Hydrodynamics
