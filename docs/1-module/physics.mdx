@@ -230,6 +230,59 @@ The thrusters are offset from the center of mass of the AUV by a distance $L$ lo
   - `inertia` (optional): the moment of inertia of the AUV in $kg \cdot m^2$.
     The default value is $100 kg \cdot m^2$.
 
+### Problem 10
+
+Using the functions you wrote in Problem 9,
+simulate the motion of the AUV in the 2D plane.
+
+- The AUV should start at the origin with an initial velocity of $0 m/s$.
+- The AUV should be able to move in any direction.
+- The AUV should be able to rotate in either direction.
+- The AUV should be able to move and rotate simultaneously.
+
+1. Write a Python function, `simulate_auv2_motion`,
+   that simulates the motion of the AUV in the 2D plane.
+
+- The function should take the following arguments:
+  - `T`: an `np.ndarray` of the magnitudes of the forces applied by the thrusters in Newtons.
+  - `alpha`: the angle of the thrusters in radians.
+  - `L`: the distance from the center of mass of the AUV to the thrusters in meters.
+  - `l`: the distance from the center of mass of the AUV to the thrusters in meters.
+  - `inertia` (optional): the moment of inertia of the AUV in $kg \cdot m^2$.
+    The default value is $100 kg \cdot m^2$.
+  - `dt` (optional): the time step of the simulation in seconds.
+    The default value is $0.1 s$.
+  - `t_final` (optional): the final time of the simulation in seconds.
+    The default value is $10 s$.
+  - `x0` (optional): the initial $x$-position of the AUV in meters.
+    The default value is $0 m$.
+  - `y0` (optional): the initial $y$-position of the AUV in meters.
+    The default value is $0 m$.
+  - `theta0` (optional): the initial angle of the AUV in radians.
+    The default value is $0 rad$.
+- The function should return the following:
+  - `t`: an `np.ndarray` of the time steps of the simulation in seconds.
+  - `x`: an `np.ndarray` of the $x$-positions of the AUV in meters.
+  - `y`: an `np.ndarray` of the $y$-positions of the AUV in meters.
+  - `theta`: an `np.ndarray` of the angles of the AUV in radians.
+  - `v`: an `np.ndarray` of the velocities of the AUV in meters per second.
+  - `omega`: an `np.ndarray` of the angular velocities of the AUV in radians per second.
+  - `a`: an `np.ndarray` of the accelerations of the AUV in meters per second squared.
+
+2. Write a Python function, `plot_auv2_motion`,
+   that plots the motion of the AUV in the 2D plane.
+   No need to test this function.
+   You can try it out in the Jupyter Notebook.
+
+- The function should take the following arguments:
+  - `t`: an `np.ndarray` of the time steps of the simulation in seconds.
+  - `x`: an `np.ndarray` of the $x$-positions of the AUV in meters.
+  - `y`: an `np.ndarray` of the $y$-positions of the AUV in meters.
+  - `theta`: an `np.ndarray` of the angles of the AUV in radians.
+  - `v`: an `np.ndarray` of the velocities of the AUV in meters per second.
+  - `omega`: an `np.ndarray` of the angular velocities of the AUV in radians per second.
+  - `a`: an `np.ndarray` of the accelerations of the AUV in meters per second squared.
+
 ## Communication
 
 ### Electromagnetic
