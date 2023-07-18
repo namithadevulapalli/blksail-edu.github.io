@@ -3,3 +3,225 @@ sidebar_position: 5
 ---
 
 # C++
+
+<iframe
+  src="https://blksail-edu.github.io/slides/cpp"
+  width="100%"
+  height={320}
+  frameborder="0"
+  allowfullscreen
+></iframe>
+
+[C++](https://en.wikipedia.org/wiki/C%2B%2B) is a general-purpose programming language created by [Bjarne Stroustrup](https://en.wikipedia.org/wiki/C%2B%2B) as an extension of the C programming language, or "C with Classes".
+The language has expanded significantly over time, and modern C++ now has object-oriented, generic, and functional features in addition to facilities for low-level memory manipulation.
+It is almost always implemented as a compiled language, and many vendors provide C++ compilers, including the Free Software Foundation, LLVM, Microsoft, Intel, Oracle, and IBM, so it is available on many platforms.
+
+## Compiler
+
+The C++ language is standardized by the [International Organization for Standardization (ISO)](https://en.wikipedia.org/wiki/International_Organization_for_Standardization) and the latest standard version is [C++20](https://en.wikipedia.org/wiki/C%2B%2B20).
+The most widely used compiler is [GCC](https://gcc.gnu.org/), which is the default compiler on most Linux distributions.
+The [Clang](https://clang.llvm.org/) compiler is also popular, and it is the default compiler on macOS.
+The [MSVC](https://en.wikipedia.org/wiki/Visual_C%2B%2B) compiler is the default compiler on Windows, and it is also available on Linux and macOS.
+
+In this course, we will be using Clang as the compiler.
+To install Clang on the RPi, run the following command:
+
+```bash
+sudo apt update
+sudo apt install clang
+```
+
+## CMake
+
+[CMake](https://cmake.org/) is an open-source, cross-platform family of tools designed to build, test and package software.
+CMake is used to control the software compilation process using simple platform and compiler independent configuration files, and generate native makefiles and workspaces that can be used in the compiler environment of your choice.
+Because CMake generates native makefiles and workspaces, you can open the project in your preferred development environment and compiler.
+
+To install CMake on the RPi, run the following command:
+
+```bash
+sudo apt update
+sudo apt install cmake
+```
+
+## `cpp-intro` Project
+
+The [`cpp-intro`](https://github.com/blksail-edu/cpp-intro) project is a simple C++ project that can be used as a template for your own projects.
+We will be using this project to demonstrate how to use CMake to build a C++ project.
+
+First fork the repository, and clone it in the RPi:
+
+```bash
+cd ~ # go to home directory
+git clone REPO_URL # replace REPO_URL with your forked repository URL
+```
+
+You should now have a `cpp-intro` directory in your home directory.
+Let's go into the directory and build the project:
+
+```bash
+cd cpp-intro # go into the directory
+mkdir build # create a build directory
+cd build # go into the build directory
+cmake .. # generate the build files
+cmake --build . # build the project
+```
+
+:::note
+A good practice is to separate the source code from the build files.
+This way, you can easily delete the build files without affecting the source code.
+This is why we created a `build` directory and ran `cmake ..` inside the directory.
+:::
+
+:::tip
+VSCode has extensions that can help you build and debug C++ projects.
+[C/C++ Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-extension-pack) is a good extension pack that includes the C/C++ extension and other useful extensions.
+:::
+
+In the `build` directory, you should see a `MyExecutable` executable.
+You can run the executable by running `./MyExecutable` while in the `build` directory.
+
+### `cpp-intro` Project Structure
+
+Go ahead an open the `cpp-intro` project in VSCode.
+
+:::tip
+In the terminal, you can run `code .` to open the current directory in VSCode.
+:::
+
+You should see the following files and directories:
+
+```
+build/
+.gitignore
+CMakeLists.txt
+main.cpp
+```
+
+Here:
+
+- The `build` directory is where the build files are generated.
+- The `.gitignore` file tells Git to ignore certain files and directories.
+- The `CMakeLists.txt` file is the CMake configuration file.
+- The `main.cpp` file is the source code of the project.
+
+### `CMakeLists.txt` File
+
+The `CMakeLists.txt` file is the CMake configuration file.
+It tells CMake how to build the project.
+Let's take a look at the `CMakeLists.txt` file in the `cpp-intro` project:
+
+```cmake
+cmake_minimum_required(VERSION 3.15)
+
+project(MyProject VERSION 1.0)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+
+add_executable(MyExecutable main.cpp)
+```
+
+Here:
+
+- The first two lines tell CMake the minimum version of CMake required and the name and version of the project.
+- The next two lines tell CMake to use C++17 and that C++17 is required.
+- The last line tells CMake to build an executable called `MyExecutable` from the `main.cpp` file.
+
+:::warning Check-off
+
+- [ ] Change the project name to `MyFirstProject`.
+- [ ] Change the project version to `0.1`.
+- [ ] Change the executable name to `MyFirstExecutable`.
+- [ ] Show your TA that you can build the `cpp-intro` project.
+
+:::
+
+### `main.cpp` File
+
+The `main.cpp` file is the source code of the project.
+Let's take a look at the `main.cpp` file in the `cpp-intro` project:
+
+```cpp
+#include <iostream>
+
+int main()
+{
+  std::cout << "Hello, world!" << std::endl;
+
+  int x = 5;
+  int y = 7;
+  std::cout << "The sum of " << x << " and " << y << " is " << x + y << std::endl;
+
+  return 0;
+}
+```
+
+Here:
+
+- The first line tells the compiler to include the `iostream` header file.
+- The `main` function is the entry point of the program.
+- The `std::cout` object is used to print to the console.
+- The `std::endl` object is used to print a new line.
+
+:::warning Check-off
+
+- [ ] Modify the `main.cpp` file to print your name and classroom.
+- [ ] Create a new variable called `z` and print the sum of `x`, `y`, and `z`.
+- [ ] Create a new variable called `w` and print the product of `x`, `y`, `z`, and `w`.
+- [ ] Create a new variable called `v` and print the division of `x`, `y` and `v`.
+- [ ] Show your TA that you can build and run the `cpp-intro` project.
+
+:::
+
+## Functions
+
+A function is a block of code that performs a specific task.
+A function can be called from anywhere in the program.
+A function can optionally take parameters and return a value.
+
+```cpp
+// function declaration
+int add(int x, int y);
+
+// function definition
+int add(int x, int y)
+{
+  return x + y;
+}
+
+int main()
+{
+  int x = 5;
+  int y = 7;
+  int z = add(x, y); // call the add function
+  std::cout << "The sum of " << x << " and " << y << " is " << z << std::endl;
+
+  return 0;
+}
+```
+
+Here:
+
+- The `add` function takes two parameters `x` and `y` and returns the sum of the two parameters.
+- The `add` function is called from the `main` function.
+
+:::note
+
+1. The `add` function is declared before the `main` function.
+   This is because the `add` function is called from the `main` function.
+
+2. Usually, the function declaration is put in a header file and the function definition is put in a source file.
+
+:::
+
+:::warning Check-off
+
+- [ ] Write the following functions:
+  - `int subtract(int x, int y)` that returns the difference of `x` and `y`.
+  - `int multiply(int x, int y)` that returns the product of `x` and `y`.
+  - `int divide(int x, int y)` that returns the division of `x` and `y`.
+- [ ] Show your TA that you can build and run the `cpp-intro` project.
+
+:::
