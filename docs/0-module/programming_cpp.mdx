@@ -310,7 +310,8 @@ Create a `Triangle` class that has `p1`, `p2`, and `p3` data members and a `area
 
 ### Problem 7
 
-Let a `Polygon` class be a class that has a `std::vector<Point>` data member and a `area` member function that returns the area of the polygon.
+Let a `Polygon` class be a class that has a `std::vector<Point>` data member and a `area` member function that returns the area of the convex polygon.
+The `std::vector<Point>` data member is a vector of `Point` objects that represent the vertices of the polygon (in order).
 Write a `Polygon` class that has a `std::vector<Point>` data member and a `area` member function that returns the area of the polygon.
 
 ### Problem 8
@@ -331,7 +332,7 @@ The `AUV` class should have the following data members:
 
 The `AUV` class should have the following member functions:
 
-- `step` that takes a `double` parameter `dt` and moves the `AUV` using `speed`.
-- `apply_accleration` that takes an `array<double>` of size 3 and accelerates the `AUV` by the given acceleration.
+- `step` that takes a `double` parameter `dt` and moves the `AUV` using velocities.
+- `apply_accleration` that takes an `array<double>` of size 3 and accelerates the `AUV` by the given acceleration, and `dt` the time step.
   The first element of the array is the forward acceleration, the second element is the lateral acceleration, and the third element is the vertical acceleration.
-- `apply_angular_accleration` that takes a `double` parameter `angular_acceleration` and accelerates the `AUV` by the given angular acceleration.
+- `apply_angular_accleration` that takes a `double` parameter `angular_acceleration`, and the time step `dt` and accelerates the `AUV` by the given angular acceleration.
