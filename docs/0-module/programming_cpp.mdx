@@ -225,3 +225,107 @@ Here:
 - [ ] Show your TA that you can build and run the `cpp-intro` project.
 
 :::
+
+## Classes
+
+A class is a user-defined data type that contains data members and member functions.
+A class is a blueprint for creating objects.
+An object is an instance of a class.
+A class can be used to create many objects.
+
+```cpp
+class Rectangle
+{
+public:
+  int width;
+  int height;
+
+  int area()
+  {
+    return width * height;
+  }
+};
+```
+
+Here:
+
+- The `Rectangle` class has two data members `width` and `height`.
+- The `Rectangle` class has one member function `area` that returns the area of the rectangle.
+
+:::warning Check-off
+
+- [ ] Write a `Circle` class that has a `radius` data member and an `area` member function that returns the area of the circle.
+- [ ] Create an instance of the `Circle` class and print the area of the circle.
+- [ ] Show your TA that you can build and run the `cpp-intro` project.
+
+:::
+
+## References
+
+A reference is an alias for an existing variable.
+A reference is declared by putting an ampersand (`&`) after the type of the variable.
+
+```cpp
+int x = 5;
+int &y = x; // y is a reference to x
+```
+
+Here:
+
+- The `y` variable is a reference to the `x` variable.
+- The `y` variable is an alias for the `x` variable.
+
+## Practice Problems
+
+### Problem 1
+
+Write a `Point` class that has `x` and `y` data members (`double`) and a `distance_to_origin` member function that returns the distance between the point and the origin.
+
+### Problem 2
+
+Augment the `Point` class with a `distance_to_point` member function that takes a `Point` object as a parameter and returns the distance between the two points.
+
+### Problem 3
+
+Write a `Line` class that has `p1` and `p2` data members(`Point`) and a `length` member function that returns the length of the line.
+
+### Problem 4
+
+Augment the `Line` class with a `distance_to_point` member function that takes a `Point` object as a parameter and returns the distance between the line and the point.
+
+### Problem 5
+
+Augment the `Point` class with a `distance_to_line` member function that takes a `Line` object as a parameter and returns the distance between the point and the line.
+
+### Problem 6
+
+Create a `Triangle` class that has `p1`, `p2`, and `p3` data members and a `area` member function that returns the area of the triangle.
+`p1`, `p2`, and `p3` are the three vertices (`Point`) of the triangle.
+
+### Problem 7
+
+Let a `Polygon` class be a class that has a `std::vector<Point>` data member and a `area` member function that returns the area of the polygon.
+Write a `Polygon` class that has a `std::vector<Point>` data member and a `area` member function that returns the area of the polygon.
+
+### Problem 8
+
+Augment the `Polygon` class with a `perimeter` member function that returns the perimeter of the polygon.
+
+### Problem 9
+
+Create a `AUV` class that represents an autonomous underwater vehicle.
+The `AUV` class should have the following data members:
+
+- `name` (`std::string`)
+- `position` (`Point`)
+- `depth` (`double`)
+- `heading` (`double`)
+- `speed` (`array<double>`) where the first element is the forward speed, the second element is the lateral speed, and the third element is the vertical speed.
+- `angular_speed` (`double`)
+
+The `AUV` class should have the following member functions:
+
+- `step` that takes a `double` parameter `dt` and moves the `AUV` using `speed`.
+- `apply_accleration` that takes an `array<double>` of size 3 and accelerates the `AUV` by the given acceleration.
+  The first element of the array is the forward acceleration, the second element is the lateral acceleration, and the third element is the vertical acceleration.
+- `apply_angular_accleration` that takes a `double` parameter `angular_acceleration` and accelerates the `AUV` by the given angular acceleration.
