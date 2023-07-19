@@ -350,14 +350,14 @@ Create a new file called `Point.hpp` and put the following code in the file:
 class Point
 {
 private:
-  double x;
-  double y;
+  double m_d_x;
+  double m_d_y;
 
 public:
   Point(double x, double y);
 
-  double x(){ return x; }
-  double y(){ return y; }
+  double x(){ return m_d_x; }
+  double y(){ return m_d_y; }
   double distance_to_origin();
   double distance_to_point(Point p);
 };
@@ -391,18 +391,18 @@ Create a new file called `Point.cpp` and put the following code in the file:
 
 Point::Point(double x, double y)
 {
-  this->x = x;
-  this->y = y;
+  this->m_d_x = x;
+  this->m_d_y = y;
 }
 
 double Point::distance_to_origin()
 {
-  return std::sqrt(std::pow(x, 2)  + std::pow(y, 2));
+  return std::sqrt(std::pow(m_d_x, 2)  + std::pow(m_d_y, 2));
 }
 
 double Point::distance_to_point(Point p)
 {
-  return std::sqrt(std::pow(x - p.x(), 2)  + std::pow(y - p.y(), 2));
+  return std::sqrt(std::pow(m_d_x - p.x(), 2)  + std::pow(m_d_y - p.y(), 2));
 }
 ```
 
