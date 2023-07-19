@@ -336,3 +336,170 @@ The `AUV` class should have the following member functions:
 - `apply_accleration` that takes an `array<double>` of size 3 and accelerates the `AUV` by the given acceleration, and `dt` the time step.
   The first element of the array is the forward acceleration, the second element is the lateral acceleration, and the third element is the vertical acceleration.
 - `apply_angular_accleration` that takes a `double` parameter `angular_acceleration`, and the time step `dt` and accelerates the `AUV` by the given angular acceleration.
+
+### Problem 10
+
+In C++, header files are used to declare classes and functions, and source files are used to define classes and functions.
+Let's create a `Point` class in a header file and a source file.
+
+Create a new file called `Point.hpp` and put the following code in the file:
+
+```cpp
+#pragma once
+
+class Point
+{
+private:
+  double x;
+  double y;
+
+public:
+  Point(double x, double y);
+
+  double x(){ return x; }
+  double y(){ return y; }
+  double distance_to_origin();
+  double distance_to_point(Point p);
+};
+```
+
+Here:
+
+- The `Point` class is **declared** in the `Point.hpp` file.
+- The `Point` class has two private data members `x` and `y`.
+- The `Point` class has a public constructor that takes two `double` parameters `x` and `y`.
+- The `Point` class has a public `x` member function that returns the `x` data member.
+- The `Point` class has a public `y` member function that returns the `y` data member.
+- The `Point` class has a public `distance_to_origin` member function that returns the distance between the point and the origin.
+- The `Point` class has a public `distance_to_point` member function that takes a `Point` object as a parameter and returns the distance between the point and the given point.
+- The `#pragma once` directive tells the compiler to include the header file only once.
+
+:::warning
+
+Including the header file more than once will cause a compilation error.
+This is because the compiler will see two declarations of the `Point` class.
+The `#pragma once` directive tells the compiler to include the header file only once.
+Therefore, even if the header file is included more than once, the compiler will only see one declaration of the `Point` class.
+
+:::
+
+Create a new file called `Point.cpp` and put the following code in the file:
+
+```cpp
+#include "Point.hpp"
+#include <cmath>
+
+Point::Point(double x, double y)
+{
+  this->x = x;
+  this->y = y;
+}
+
+double Point::distance_to_origin()
+{
+  return std::sqrt(std::pow(x, 2)  + std::pow(y, 2));
+}
+
+double Point::distance_to_point(Point p)
+{
+  return std::sqrt(std::pow(x - p.x(), 2)  + std::pow(y - p.y(), 2));
+}
+```
+
+Here:
+
+- The `Point` class is **defined** in the `Point.cpp` file.
+- The `Point` class constructor is defined.
+- The `Point` class `distance_to_origin` member function is defined.
+- The `Point` class `distance_to_point` member function is defined.
+
+Your directory structure should look like this:
+
+```
+build/
+.gitignore
+CMakeLists.txt
+main.cpp
+Point.hpp
+Point.cpp
+```
+
+In `main.cpp`, you can include the `Point.hpp` header file and use the `Point` class:
+
+```cpp
+#include <iostream>
+#include "Point.hpp"
+[...]
+```
+
+:::tip
+
+Notice that we used double quotes (`"`) instead of angle brackets (`<` and `>`).
+This is because the `Point.hpp` file is in the same directory as the `main.cpp` file.
+
+:::
+
+Now, you should also remove the `Point` class from the `main.cpp` file.
+
+Go ahead and build the project:
+
+```bash
+cmake --build . # build the project. You should be in the build directory.
+```
+
+The build system should be able to find the `Point.hpp` and compile.
+However, the build system will not be able to find the `Point.cpp` file.
+Therefore, you should see an error message like this:
+
+```
+[...]
+[ 50%] Building CXX object CMakeFiles/MyExecutable.dir/main.cpp.o
+[100%] Linking CXX executable MyExecutable
+CMakeFiles/MyExecutable.dir/main.cpp.o: In function `main':
+main.cpp:(.text+0x1c): undefined reference to `Point::Point(double, double)'
+[...]
+```
+
+This is because we did not tell the build system to compile the `Point.cpp` file.
+Let's go ahead and tell the build system to compile the `Point.cpp` file.
+
+Open the `CMakeLists.txt` file and add `Point.cpp` to the following line:
+
+```cmake
+add_executable(MyFirstExecutable
+  main.cpp
+  Point.cpp
+)
+```
+
+:::tip
+
+Notice that we did not include `Point.hpp` in the `add_executable` command.
+This is because `Point.hpp` is included in `main.cpp`.
+
+:::
+
+Now, go ahead and build the project again:
+
+```bash
+cmake --build . # build the project. You should be in the build directory.
+```
+
+You should now be able to build the project successfully.
+Go ahead and run the executable:
+
+```bash
+./MyFirstExecutable
+```
+
+Everything should work as before.
+
+:::warning Check-off
+
+- [ ] Create a `Line` class in a header file and a source file.
+- [ ] Create a `Triangle` class in a header file and a source file.
+- [ ] Create a `Polygon` class in a header file and a source file.
+- [ ] Create a `AUV` class in a header file and a source file.
+- [ ] Show your TA that you can build and run the `cpp-intro` project.
+
+:::
