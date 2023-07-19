@@ -1,0 +1,87 @@
+---
+sidebar_position: 1
+---
+
+# Motor Control
+
+## Introduction
+
+The motors used in the robot are brushless DC motors.
+These motors are controlled by a Electronic Speed Controller (ESC).
+The ESCs are controlled by the flight controller, which in turn is controlled by the Raspberry Pi.
+
+```mermaid
+graph LR
+    RPI[Raspberry Pi] --> FC[Flight Controller]
+    FC[Flight Controller] --> E1[ESC 1]
+    FC --> E2[ESC 2]
+    FC --> E3[ESC 3]
+    FC --> E4[ESC 4]
+    FC --> E5[ESC 5]
+    FC --> E6[ESC 6]
+    E1 --> M1[Motor 1]
+    E2 --> M2[Motor 2]
+    E3 --> M3[Motor 3]
+    E4 --> M4[Motor 4]
+    E5 --> M5[Motor 5]
+    E6 --> M6[Motor 6]
+```
+
+## ESCs
+
+The ESCs receive a Pulse Width Modulation (PWM) signal from the flight controller.
+This is a signal that is sent at a fixed frequency, but the duty cycle of the signal is varied.
+The duty cycle is the percentage of the time that the signal is high.
+The ESCs use this signal to determine the speed of the motor.
+This is common is RC applications, and is the same way that servos are controlled, see [Servo Control - Wikipedia](https://en.wikipedia.org/wiki/Servo_control)
+
+![PWM Signal](https://upload.wikimedia.org/wikipedia/commons/6/6c/Servomotor_Timing_Diagram.svg)
+
+The ESCs are connected to the flight controller using a 3 pin connector.
+The pins are labelled as follows:
+
+- `GND` - Ground
+- `5V` - 5V power supply
+- `S` - Signal
+
+## Motors
+
+The motors are brushless DC motors.
+A brushless DC motor is a synchronous electric motor which is powered by direct-current electricity (DC) and which has an electronically controlled commutation system, instead of a mechanical commutation system based on brushes.
+In such motors, current and torque, voltage and rpm are linearly related.
+
+![Brushless DC Motor](https://upload.wikimedia.org/wikipedia/commons/2/2e/Floppy_drive_spindle_motor_open.jpg)
+
+We can control the speed of the motor by varying the voltage applied to the motor.
+The ESCs do this for us, and we can control the speed of the motor by varying the duty cycle of the PWM signal.
+
+## Flight Controller
+
+The flight controller is a device that is used to control the motors.
+It is a microcontroller that is designed to be used in drones.
+It has a number of sensors that are used to determine the orientation of the drone.
+It then uses this information to control the motors.
+
+The BlueROV2 uses a Pixhawk flight controller.
+
+The flight controller is connected to the Raspberry Pi using a serial connection.
+The Raspberry Pi sends commands to the flight controller, and the flight controller sends back information about the sensors.
+It uses the [MAVLink](https://mavlink.io/en/) protocol to communicate with the Raspberry Pi.
+
+:::note
+
+In this section, we will use the flight controller to control the motors.
+We will be ignoring the sensors on the flight controller, and will be using the Raspberry Pi to control the flight controller.
+
+:::
+
+## Raspberry Pi
+
+The Raspberry Pi inside the BlueROV2 is used to control the flight controller.
+It is running a program called [ArduSub](https://www.ardusub.com/) alongside a set of other programs as [BlueOS](https://docs.bluerobotics.com/ardusub-zola/software/onboard/BlueOS-1.1/)
+ArduSub is a program that is designed to control underwater vehicles.
+It is based on the [ArduPilot](https://ardupilot.org/) project, which is a program that is designed to control aerial vehicles.
+
+From your own RPi, you can control the motors by sending commands to the flight controller.
+You can do this by sending MAVLink commands to the flight controller.
+We will be using the python library [pymavlink](https://www.ardusub.com/developers/pymavlink.html) to do this.
