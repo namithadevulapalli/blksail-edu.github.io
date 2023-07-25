@@ -20,16 +20,17 @@ On the backseat computer, we will be using [OpenCV with Python](https://github.c
 Create a new virtual environment and install OpenCV:
 
 ```bash
-mkvirtualenv -p python3 opencv
+mkvirtualenv -p python3 bluecv
 workon bluecv
 pip install opencv-python-headless
 ```
 
-Now, in the home directory, create a new folder called `bluecv` and create a new file called `test.ipynb`:
+Now, fork [cv-intro](https://github.com/blksail-edu/cv-intro) and clone it in the home directory.
+Open the `cv-intro` folder in VSCode.
+
+Create a new Jupyter notebook:
 
 ```bash
-mkdir bluecv
-cd bluecv
 touch test.ipynb
 ```
 
@@ -42,6 +43,18 @@ import matplotlib.pyplot as plt
 ```
 
 Run the code and make sure it works.
+
+:::note
+
+If you get an error, make sure:
+
+1. You are in the `bluecv` virtual environment.
+   VSCode should display the name of the virtual environment in top right corner of the Jupyter notebook.
+2. You installed all the dependencies.
+   Try installing them with `pip install [...]`.
+   This should be run in the virtual environment.
+
+:::
 
 ### Reading Images
 
