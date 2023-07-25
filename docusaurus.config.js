@@ -83,12 +83,12 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      announcementBar: {
-        id: "join_discord", // Any value that will identify this message
-        content:
-          'Join the <a target="_blank" rel="noopener noreferrer" href="https://discord.gg/64zGV9EY93">AUVC Discord</a> to chat with other students and mentors!',
-        isCloseable: true,
-      },
+      // announcementBar: {
+      //   id: "join_discord", // Any value that will identify this message
+      //   content:
+      //     'Join the <a target="_blank" rel="noopener noreferrer" href="https://discord.gg/64zGV9EY93">AUVC Discord</a> to chat with other students and mentors!',
+      //   isCloseable: true,
+      // },
       // Replace with your project's social card
       image: "img/AUVC2023.001.png",
       navbar: {
