@@ -36,11 +36,34 @@ In Windows, the simulation will run, but the GUI will not work.
 <Tabs groupId="operating-systems">
 <TabItem value="macos" label="macOS">
 
-First we add the `osrf/simulation` tap:
+First we need to install ruby from Homebrew:
+
+```bash
+brew install ruby
+```
+
+Then we have to add the Homebrew Ruby to our path:
+
+```bash
+echo 'export PATH="$(brew --prefix)/opt/ruby/bin:$PATH"' >> ~/.zshrc
+```
+
+Now, we add the `osrf/simulation` tap:
 
 ```bash
 brew tap osrf/simulation
 ```
+
+:::tip Apple Silicon-based Macs
+
+For Apple Silicon-based Macs, we need to modify the Formulae before installing Gazebo.
+
+```bash
+cd /opt/homebrew/Library/Taps/osrf/homebrew-simulation/Formula
+sed -i '' 's|cmake_args << "-DCMAKE_INSTALL_RPATH=#{rpath}"|cmake_args << "-DCMAKE_INSTALL_RPATH=#{rpath};/opt/homebrew/lib"|' *.rb
+```
+
+:::
 
 Next we install Gazebo:
 
