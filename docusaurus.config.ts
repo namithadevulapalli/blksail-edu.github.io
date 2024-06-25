@@ -9,7 +9,7 @@ import rehypeKatex from "rehype-katex";
 
 const config: Config = {
   title: "Autonomous Underwater Vehicle Challenge",
-  tagline: "MIT Beaver Works Summer Institute 2023 - BLKSAIL",
+  tagline: "MIT Beaver Works Summer Institute - BLKSAIL",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -55,6 +55,13 @@ const config: Config = {
             "https://github.com/blksail-edu/blksail-edu.github.io/tree/main/",
           remarkPlugins: [remarkMath],
           rehypePlugins: [rehypeKatex],
+          lastVersion: "current",
+          versions: {
+            current: {
+              label: "2024",
+              path: "2024",
+            },
+          },
         },
         blog: {
           showReadingTime: true,
@@ -97,6 +104,12 @@ const config: Config = {
           label: "Course",
         },
         { to: "/blog", label: "Announcements", position: "left" },
+        {
+          type: "docsVersionDropdown",
+          position: "right",
+          dropdownItemsAfter: [],
+          dropdownActiveClassDisabled: true,
+        },
         {
           href: "https://github.com/blksail-edu",
           label: "GitHub",
