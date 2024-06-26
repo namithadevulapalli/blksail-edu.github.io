@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkblksail_edu_github_io=self.webpackChunkblksail_edu_github_io||[]).push([[2535],{5641:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Welcome AUVC 2023!","permalink":"/blog/hello-2023"}]}')}}]);
