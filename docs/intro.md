@@ -8,7 +8,7 @@ sidebar_position: 1
 
 <iframe src="https://blksail-edu.github.io/slides/day0" width="100%" height={320} frameborder="0" allowfullscreen></iframe>
 
-Welcome to the Autonomous Underwater Vehicle Challenge (AUVC) 2023!
+Welcome to the Autonomous Underwater Vehicle Challenge (AUVC) 2024!
 This comprehensive and practical course is designed to introduce you to the fascinating world of underwater robotics, equipping you with the skills and knowledge to program and operate off-the-shelf underwater robotic vehicles.
 
 ## Course Overview
@@ -41,11 +41,11 @@ This is a chance for you to put your newly acquired skills to test and gain real
 
 ## Important Dates
 
-- ** Course Start Date: _July 10th, 2023_ **
+- ** Course Start Date: _July 8th, 2024_ **
 
-- ** Course End Date: _August 4th, 2023_ **
+- ** Course End Date: _August 2nd, 2024_ **
 
-- ** Final Project Presentations: _TBD_ **
+- ** Final Project Presentations: August 3rd, 2024 **
 
 ---
 
