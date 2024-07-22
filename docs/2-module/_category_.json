@@ -1,9 +1,8 @@
 {
-    "label": "Module 2 - ...",
+    "label": "Module 2 - ROS2",
     "position": 4,
     "link": {
       "type": "generated-index",
-      "description": "Software stack, data collection, open-loop control."
+      "description": "ROS 2 - An open-source robotics middleware"
     }
   }
-  
