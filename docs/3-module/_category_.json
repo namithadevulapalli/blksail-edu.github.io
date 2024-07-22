@@ -1,9 +1,8 @@
 {
-    "label": "Module 3 - ...",
+    "label": "Module 3 - Control",
     "position": 5,
     "link": {
       "type": "generated-index",
-      "description": "closed-loop control, computer vision."
+      "description": "Sense, plan, and action 🎬!"
     }
   }
-  
