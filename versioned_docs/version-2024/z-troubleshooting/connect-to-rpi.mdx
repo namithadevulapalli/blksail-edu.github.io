@@ -1,0 +1,55 @@
+---
+sidebar_position: 1
+---
+
+# Connecting to the backseat computer
+
+```mermaid
+graph LR
+    A[Computer] ---|USB-C OTG| B[Backseat Computer]
+    B ---|Ethernet| C[onboard computer]
+    C ---|Serial| D[Flight Computer]
+```
+
+## Ping the RPi
+
+To check if the RPi is connected to the network, you can ping it.
+To do so, open a terminal and type:
+
+```bash
+ping backseat.local
+```
+
+If you get a response, you are on the same network as the RPi and it is powered on.
+
+If you don't get a response, check the following:
+
+1. Is the RPi powered on? The red LED should be on.
+   The red LED is the power LED. If it is not on, the RPi is not powered on.
+2. Does your computer show a network interface `RNDIS/Ethernet Gadget`?
+   If not, you need to install the driver for the RPi USB OTG.
+3. Does your operating system support [mDNS](https://en.wikipedia.org/wiki/Multicast_DNS)?
+   If not, you need to use the IP address of the RPi instead of `backseat.local`.
+
+## SSH into the RPi
+
+To connect to the RPi, you can use SSH.
+To do so, open a terminal and type:
+
+```bash
+ssh blue@backseat.local
+```
+
+The default password is `iamblue`.
+
+:::note
+
+If you are using Windows, you need to install an SSH client.
+
+:::
+
+:::note
+
+You can also connect with the username you created during the setup.
+
+:::
