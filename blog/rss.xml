@@ -4,10 +4,28 @@
         <title>Autonomous Underwater Vehicle Challenge Blog</title>
         <link>https://blksail-edu.github.io/blog</link>
         <description>Autonomous Underwater Vehicle Challenge Blog</description>
-        <lastBuildDate>Sat, 03 Jun 2023 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 23 Jun 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[Welcome AUVC 2025!]]></title>
+            <link>https://blksail-edu.github.io/blog/welcome-2025</link>
+            <guid>https://blksail-edu.github.io/blog/welcome-2025</guid>
+            <pubDate>Mon, 23 Jun 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Hello Trailblazers,]]></description>
+            <content:encoded><![CDATA[<p>Hello Trailblazers,</p>
+<p>Welcome to the 2025 edition of the MIT Beaver Works Summer Institute – Autonomous Underwater Vehicle Challenge, powered by  <a href="https://www.blksail.ai/" target="_blank" rel="noopener noreferrer">blkSAIL</a> !</p>
+<p>You're about to embark on a one-of-a-kind expedition into the thrilling world of underwater robotics. Over the next four weeks, you’ll not only learn to command autonomous submarines—you’ll become engineers, strategists, and innovators shaping the future of marine technology.</p>
+<p>This isn't your typical classroom experience. You'll be diving deep (figuratively!) into Python, C++, physics, and autonomy, using your creativity and technical skills to control real underwater robots. You’ll be challenged to build, program, and fine-tune systems that can execute complex missions—just like what’s done in real-world marine exploration, defense, and environmental monitoring.</p>
+<p>Expect early wins, late-night breakthroughs, unexpected bugs, and the pure thrill of solving tough problems with your teammates. You’ll be learning from industry professionals, researchers, and mentors who are just as excited as you are to explore the unknown.</p>
+<p>You’ve earned your place here—and we’re thrilled to have you. Whether you come in as a robotics enthusiast, a curious coder, a mechanical tinkerer, or simply someone who thrives on a good challenge, this course is your space to grow. Over the next few weeks, you’ll sharpen your technical skills, expand your creativity, and discover just how far you can go when you combine teamwork with innovation. We're excited to see what you'll build, break, and boldly reimagine.</p>
+<p>This is your launchpad. So take the plunge, get your hands dirty, make mistakes, fix them, ask questions, and most of all—have fun. The ocean of knowledge is vast, and you’ve just set sail.</p>
+<p>Let’s make some waves!</p>
+<p>See you in the pool,</p>
+<p>Mohamed Saad Ibn Seddik, Dr.Eng.</p>]]></content:encoded>
+            <category>welcome</category>
+        </item>
         <item>
             <title><![CDATA[Welcome AUVC 2023!]]></title>
             <link>https://blksail-edu.github.io/blog/hello-2023</link>
