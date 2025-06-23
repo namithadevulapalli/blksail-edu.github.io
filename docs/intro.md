@@ -8,7 +8,7 @@ sidebar_position: 1
 
 <iframe src="https://blksail-edu.github.io/slides/2024_day0" width="100%" height={320} frameborder="0" allowfullscreen></iframe>
 
-Welcome to the Autonomous Underwater Vehicle Challenge (AUVC) 2024!
+Welcome to the Autonomous Underwater Vehicle Challenge (AUVC) 2025!
 This comprehensive and practical course is designed to introduce you to the fascinating world of underwater robotics, equipping you with the skills and knowledge to program and operate off-the-shelf underwater robotic vehicles.
 
 ## Course Overview
@@ -39,13 +39,21 @@ Throughout the course, you will be provided with a variety of resources to facil
 The course concludes with a final project where you will plan and execute a mission using an underwater robot.
 This is a chance for you to put your newly acquired skills to test and gain real-world experience in handling an underwater robotics mission.
 
-## Important Dates
+## Important Information
 
-- ** Course Start Date: _July 8th, 2024_ **
+- Course Duration: **_4 weeks_**
 
-- ** Course End Date: _August 2nd, 2024_ **
+- Course Schedule: **_Monday to Friday, 9 AM - 5 PM_**
+  - Pool Time: **_9 AM - 12 PM_**
+  - Classroom Time: **_1 PM - 5 PM_**
 
-- ** Final Project Presentations: August 3rd, 2024 **
+- Location: **_[24-115, MIT Building 24](https://whereis.mit.edu/?go=24), Cambridge, MA_**
+
+- Course Start Date: **_July 7th, 2025_**
+
+- Course End Date: **_August 1st, 2025_**
+
+- Demo Day: **_August 2nd, 2025_**
 
 ---
 
