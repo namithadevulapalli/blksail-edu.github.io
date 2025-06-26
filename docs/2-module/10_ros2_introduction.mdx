@@ -1,0 +1,432 @@
+---
+slidebar_position: 1
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# 2.1 Introduction
+
+Robot Operating System 2 (ROS 2) is a middleware with open-source libraries and tools to build and support robotics applications. The documentation can be found [here](https://docs.ros.org/en/jazzy/index.html).
+
+<iframe
+  src="https://blksail-edu.github.io/slides/2024_intro_to_ros"
+  width="100%"
+  height={320}
+  frameborder="0"
+  allowfullscreen
+></iframe>
+
+
+## Terminology
+
+The ROS 2 Graph describes the general terminology and structure of ROS 2 at the user-level. The ROS 2 graph consists of:
+
+- Nodes
+- Topics
+- Messages
+- Services
+- Parameters
+
+![gif0](https://docs.ros.org/en/kilted/_images/Nodes-TopicandService.gif)
+
+### Nodes
+
+Nodes are instances of executables that act as individual computation entitites. They perform specific tasks, such as processing sensor data or controlling hardware. Nodes communicate with each other using publishers/subscribers, services, and actions.
+
+*Multiple nodes can publish to and subscribe to the same topics.*
+
+
+![gif1](https://docs.ros.org/en/kilted/_images/Topic-SinglePublisherandSingleSubscriber.gif)
+
+
+### Topics
+
+Topics are named buses that nodes use to exchange messages in publisher/subscriber pairs. Nodes talk to other nodes by publishing messages to topics. Nodes listen to other nodes by subscribing to those topics to receive the messages.
+
+*Each topic is limited to a single message type specified at the time when the topic is named. Multiple topics can have the same message type.*
+
+
+### Messages
+
+Messages are data structures used to communicate information between nodes via topics. These structures contain combinations of fields and data types, and are defined in .msg files. The field is the name of specific data in the structure, while the data type is typically either a primitive data type or another message type. Messages define specific information such as sensor data or control input.
+
+:::info
+
+In the below example message file `Vector3.msg`, there are three data fields `x`, `y`, and `z`, each with a data type of `float64`.
+
+
+```msg
+Vector3.msg
+
+float64 x
+float64 y
+float64 z
+```
+
+The data type can be any [primitive data type](https://docs.ros.org/en/jazzy/Concepts/Basic/About-Interfaces.html), other message types, or arrays.
+
+:::
+
+
+### Services
+
+Services are used by nodes to co communication method with a request-response mechanism. A client sends requests to a server and receives responses after the service is complete.
+
+![gif2](https://docs.ros.org/en/kilted/_images/Service-SingleServiceClient.gif)
+
+
+### Parameters
+
+Parmaeters are modifiable values assigned to individual or multiple nodes at runtime.
+
+
+## Environment Setup
+
+### Source ROS 2 in `.zshrc` File
+
+For ROS 2 to be accessible in the terminal, the ROS 2 installation and all workspaces must be sourced. The installation contains all default packages and tools necessary to use ROS 2. Workspaces are locations that contain user-defined packages/code.
+
+1. Configure the `.zshrc` file to source the ROS 2 installation. In a terminal on the `backseat`, run the following command.
+
+```zsh
+echo "source /opt/ros/jazzy/setup.zsh" >> ~/.zshrc
+```
+
+:::info
+
+This command will directly insert the line `source /opt/ros/jazzy/setup.zsh` as a new line in the `.zshrc` file.
+
+:::
+
+2. Source the `.zshrc` file again to apply the changes in the current terminal.
+
+```zsh
+source ~/.zshrc
+```
+
+### Create a ROS 2 Workspace
+
+3. To create a workspace, start by making an empty directory named `auvc_ws`.
+
+```zsh
+cd && mkdir auvc_ws
+```
+
+Every workspace contains the following four directories:
+- `build`: files for compiling packages
+- `install`: compiled packages and executables
+- `log`: compile history
+- `src`: user-defined packages/code
+
+4. Initialize the `build`, `install`, and `log` directories by compiling the empty workspace. The `src` directory is manually created in the next step.
+
+:::warning
+
+When you run `colcon build` to compile packages in a workspace you MUST run the command in the workspace directory.
+
+BEFORE running the command, run `pwd` to print the working directory and ensure that the path ends with `auvc_ws`.
+
+:::
+
+```zsh
+colcon build
+```
+
+5. Configure the `.zshrc` file to source the workspace and source the workspace.
+
+```zsh
+echo "source ~/auvc_ws/install/setup.zsh" >> ~/.zshrc && source ~/.zshrc
+```
+
+6. Lastly, create the `src` directory.
+
+```zsh
+mkdir src
+```
+
+### Create a ROS 2 Package
+
+Packages are structured directories where users write their nodes.
+
+7. Create a new package in your ROS 2 workspace.
+
+:::warning
+
+When you create a package with `ros pkg create`, you MUST run the command inside the `src` directory within the workspace.
+
+BEFORE running the command, run `pwd` to print the working directory and ensure the path ends with `auvc_ws/src`.
+
+:::
+
+```zsh
+ros2 pkg create tutorial --build-type ament_python
+```
+
+In this case, `tutorial` is the name of the package and `--build-type ament_python` specifies the package is a python package.
+
+8. Open the package in Visual Studio Code and inspect the structure.
+
+```zsh
+code ~/auvc_ws/src/tutorial
+```
+
+Within the `tutorial` package, you will find a second, empty directory that is also named `tutorial`. Each ROS 2 python package contains a subdirectory with the same name as the package. Python files (your ROS 2 nodes) go inside this subdirectory.
+
+:::info
+
+For this example package, you will create any python files inside the `tutorial` subdirectory.
+
+You can check whether you are in the right place by using `pwd` to print the working directory and verifying that the path ends in `auvc_ws/src/tutorial/tutorial`.
+
+Alternatively, if you were working in a package called \<your_package_name\>, the subdirectory would also be called \<your_package_name\>.
+
+:::
+
+:::warning
+
+To ensure your package compiles correctly, there are two files that must be modified inside the package in addition to your python nodes:
+
+- `package.xml`: defines package dependencies
+- `setup.py`: define package compilation data
+
+:::
+
+## Problem Set
+
+### Problem One
+
+Create a node in your `tutorial` package that publishes `Vector3` messages to a topic named `/tutorial` on a timed interval.
+
+1. Create a new python file in the your `tutorial` package named `publisher.py`.
+
+2. In the file, add the following imports:
+
+```py
+import rclpy    # the ROS 2 client library for Python
+from rclpy.node import Node    # the ROS 2 Node class
+from geometry_msgs.msg import Vector3    # the Vector3 message type definition
+```
+
+3. Create a class for your node that inherits from the ROS 2 Node class.
+
+4. In the initializer method, add:
+
+```py
+super().__init__("tutorial_publisher")    # names the node when running
+
+self.pub = self.create_publisher(
+    Vector3,        # the message type
+    "/tutorial",    # the topic name
+    10              # QOS (will be covered later)
+)
+
+self.timer = self.create_timer(
+    1.0,    # timer period (sec)
+    self.publish_vector3    # callback function
+)
+
+self.get_logger().info("initialized publisher node")
+```
+
+:::info
+
+In this problem, the `publish_vector3` method will be called by the timer every `1.0` seconds.
+
+:::
+
+5. Create a method `publish_vector3` that publishes a `Vector3` message when called. Replace the values with random values.
+
+:::info
+
+An empty ROS 2 message is created using a variable of the message type:
+
+```py
+msg = Vector3()
+```
+
+The data fields of the message are accessed as follows:
+
+```py
+msg.x = 0
+msg.y = 0
+msg.z = 0
+```
+
+The message is published by the publisher using:
+
+```py
+self.pub.publish(msg)
+```
+
+:::
+
+6. Add the `main` function below the class definition.
+
+```py
+def main(args=None):
+    rclpy.init(args=args)
+    node = <YOUR_CLASS>()
+
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        print("\nKeyboardInterrupt received, shutting down...")
+    finally:
+        node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
+```
+
+### Problem Two
+
+Create a node in your `tutorial` package that subscribes to `Vector3` messages on a topic named `/tutorial` and logs them to the terminal.
+
+1. Create a new python file in the your `tutorial` package named `subscriber.py`.
+
+
+2. In the file, add the following imports:
+
+```py
+import rclpy    # the ROS 2 client library for Python
+from rclpy.node import Node    # the ROS 2 Node class
+from geometry_msgs.msg import Vector3    # the Vector3 message type definition
+```
+
+3. Create a class for your node that inherits from the ROS 2 Node class.
+
+4. In the initializer method, add:
+
+```py
+super().__init__("tutorial_subscriber")    # names the node when running
+
+self.sub = self.create_subscription(
+    Vector3,        # the message type
+    "/tutorial",    # the topic name,
+    self.log_vector3,  # the subscription's callback method
+    10              # QOS (will be covered later)
+)
+
+self.get_logger().info("initialized subscriber node")
+```
+
+:::info
+
+Each time a subscription hears a message on a topic, that subscription calls a callback method.
+
+:::
+
+5. Create the subscription method `log_vector3`. Define a new variable called `msg_converted`. Convert the message and assign the new values to `msg_converted`. Log the converted message in the terminal.
+
+:::info
+
+The callback function should be defined as:
+
+```py
+def log_vector3(self, msg):
+```
+
+:::
+
+6. Add the `main` function below the class definition.
+
+```py
+def main(args=None):
+    rclpy.init(args=args)
+    node = <YOUR_CLASS>()
+
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        print("\nKeyboardInterrupt received, shutting down...")
+    finally:
+        node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
+```
+
+### Problem Three
+
+Modify `package.xml` so that the pile compiles correctly.
+
+1. Below the license tag in `package.xml`, add the following dependencies:
+
+```xml
+<depend>rclpy</depend>
+<depend>geometry_msgs</depend>
+```
+
+:::note
+
+Only ROS 2 specific dependencies are required. Python libraries like `numpy` and `random` do not need to be added.
+
+:::
+
+### Problem Four
+
+Modify `update.py` so that the pile compiles correctly.
+
+1. All nodes that should be compiled to executables must be specified in `setup.py` as entry points. Replace the entry_points in your `setup.py` with the following:
+
+```py
+entry_points={
+    'console_scripts': [
+        'publisher = tutorial.publisher:main',
+        'subscriber = tutorial.subscriber:main',
+    ],
+},
+```
+
+:::info
+
+Consider the first line in `console_scripts`.
+
+```py
+'publisher = tutorial.publisher:main',
+```
+
+The first element, `publisher`, is the name of the executable once compiled. Each executable must have a unique name within the package.
+
+The second element, `tutorial.publisher:main` defines the path to the python file and the function to compile. In this case, `tutorial` is the subdirectory within the package where the nodes are located, `publisher` is the name of the python file, and `main` is the name of the function to compile.
+
+:::
+
+### Problem Five
+
+Compile and test your nodes.
+
+1. Compile the package.
+
+:::warning
+
+Make sure you are compiling in the correct location. Running the `colcon build` command in the wrong location will **mess up your workspace**.
+
+:::
+
+```zsh
+colcon build --packages-select tutorial
+```
+
+:::note
+
+The `--packages-select` flag allows you to select specific packages to compile.
+
+:::
+
+2. Open a new terminal on the `backseat` and start an instance of the publisher node:
+
+```zsh
+ros2 run tutorial publisher
+```
+
+3. Open another new terminal on the `backseat` and start an instance of the subscriber node:
+
+```zsh
+ros2 run tutorial subscriber
+```
+
+:::warning Check-off
+
+Review with a TA or instructor to check-off this problem set.
+
+:::

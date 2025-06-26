@@ -1,0 +1,80 @@
+---
+slidebar_position: 5
+---
+
+# 2.5 Launch Files
+
+Launch files in ROS 2 are used to start multiple instances of nodes using a single terminal command. These files save you time by eliminating the need to open X terminals to `ros2 run` X nodes.
+
+## Creating a Launch File
+
+1. In your first ROS 2 package called `tutorial`, create a new directory called `launch`. Inside this `launch` subdirectory, create a new file called `example.launch.yaml`.
+
+2. Inside of `example.launch.yaml`, add the following code:
+
+```yaml
+launch:
+
+- node:
+    pkg: "tutorial"
+    exec: "publisher"
+    name: "tutorial_publisher"
+    namespace: ""
+
+- node:
+    pkg: "tutorial"
+    exec: "subscriber"
+    name: "tutorial_subscriber"
+    namespace: ""
+```
+
+:::info
+
+YAML launch files in ROS 2 are structured so that you may specify multiple nodes defined using their executable and package. You may also rename the node from inside the launch file, or add a namespace to the node.
+
+:::
+
+3. Now open your `setup.py` file. Inside this file, you must specify to build the launch files inside the `launch` subdirectory.
+
+Add the following imports at the top of the file:
+
+```py
+import os
+import glob
+```
+
+Then, in the `data_files` argument in the `setup` call, add the following line:
+
+```py
+(os.path.join('share', package_name, 'launch'), glob('launch/*'))
+```
+
+such that the argument looks like:
+
+```py
+data_files=[
+    ('share/ament_index/resource_index/packages',
+        ['resource/' + package_name]),
+    ('share/' + package_name, ['package.xml']),
+    (os.path.join('share', package_name, 'launch'), glob('launch/*'))
+],
+```
+
+4. Compile the package and test your launch file:
+
+```zsh
+cd ~/auvc_ws && colcon build --packages-select tutorial
+source install/setup.zsh
+```
+
+```zsh
+ros2 launch tutorial example.launch.yaml
+```
+
+In the terminal, you should see that both the publisher and subscriber nodes have started running. When you shutdown the launch file, all associated nodes will also stop running.
+
+:::warning Check-off
+
+Review with a TA or instructor to check-off this section.
+
+:::

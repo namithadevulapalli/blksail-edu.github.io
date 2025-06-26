@@ -1,0 +1,86 @@
+---
+slidebar_position: 2
+---
+
+# 2.2 Terminal Commands
+
+## Package Commands
+
+ROS 2 packages are the fundamental building blocks of ROS 2 code. They contain nodes, interfaces, and other resources necessary for ROS 2 applications.
+
+| Command | Description | Example |
+| ------- | ----------- | ------- |
+| `ros2 pkg create` | Creates an empty ROS 2 package in the current directory. | `ros2 pkg create tutorial --build-type ament_python` |
+| `colcon build`  | Compiles ROS 2 packages. | `colcon build --packages-select \<PACKAGE_NAME\>` |
+
+:::warning
+
+When you create a package with `ros pkg create`, you MUST run the command inside the `src` directory within the workspace.
+
+BEFORE running the command, run `pwd` to print the working directory and ensure the path ends with `auvc_ws/src`.
+
+:::
+
+:::warning
+
+When you run `colcon build` to compile packages in a workspace you MUST run the command in the workspace directory.
+
+BEFORE running the command, run `pwd` to print the working directory and ensure that the path ends with `auvc_ws`.
+
+:::
+
+:::info
+
+If you've just compiled a new package, you will either need to source the workspace before the package is available. To do so, either 1. open a new terminal, 2. run `source ~/auvc_ws/install/setup.zsh`, or 3. source the `.zshrc` file with `source ~/.zshrc`.
+
+:::
+
+## Node Commands
+
+Nodes are the executable programs in ROS 2 that perform computation. They can communicate with each other through topics, services, and actions.
+
+| Command | Description | Example |
+| ------- | ----------- | ------- |
+| `ros2 node info` | Outputs information about a node. | `ros2 node info /publisher` |
+| `ros2 node list` | Outputs a list of running nodes. | `ros2 node list` |
+
+## Topic Commands
+
+Topics are the communication channels in ROS 2 that nodes use to exchange messages. They are used for one-to-many communication.
+
+| Command | Description | Example |
+| ------- | ----------- | ------- |
+| `ros2 topic echo` | Outputs messages on a topic in the terminal. | `ros2 topic echo /tutorial` |
+| `ros2 topic info` | Outputs information about a topic. | `ros2 topic info /tutorial` |
+| `ros2 topic list` | Outputs a list of named topics. | `ros2 topic info` |
+| `ros2 topic pub` | Publishes data to a topic from the terminal. | `ros2 topic pub geometry_msgs/msg/Vector3 "\{x: 1.0, y: 0.0, z: 0.0\}"` |
+
+## Interface Commands
+
+Interfaces are the data structures that nodes use to communicate \(i.e., `.msg` files, `.srv` files, etc.\).
+
+| Command | Description | Example |
+| ------- | ----------- | ------- |
+| `ros2 interface list` | Outputs a list of defined interfaces. | `ros2 interface list` |
+| `ros2 interface package` | Outputs a list of defined interfaces in a compiled package. | `ros2 interface package tutorial` |
+| `ros2 interface packages` | Outputs a list of packages that contain interfaces. | `ros2 interface packages` |
+| `ros2 interface show` | Outputs the structure defined within the interface. | `ros2 interface show geometry_msgs/msg/Vector3Stamped` |
+
+## Service Commands
+
+Services are a way for nodes to communicate in a request-response manner. They are used for synchronous communication.
+
+| Command | Description | Example |
+| ------- | ----------- | ------- |
+| `ros2 service call` | Calls a service from the terminal. | `ros2 service call \<SERVICE_NAME\> std_srvs/srv/SetBool "\{data: true}"` |
+| `ros2 service find` | Outputs a list of services of a service type. | `ros2 service find std_srvs/srv/SetBool` |
+| `ros2 service list` | Outputs a list of running services. | `ros2 service list` |
+| `ros2 service type` | Outputs the type of a running service. | `ros2 service type \<SERVICE_NAME\>` |
+
+## Launch Commands
+
+Launch files in ROS 2 are used to start multiple instances of nodes using a single terminal command. These files save you time by eliminating the need to open X terminals to `ros2 run` X nodes.
+
+| Command | Description | Example |
+| ------- | ----------- | ------- |
+| `ros2 launch` | Runs a ROS 2 launch file. | `ros2 launch \<PACKAGE_NAME\> \<LAUNCH_FILE\>` |

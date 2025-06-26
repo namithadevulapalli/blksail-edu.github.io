@@ -1,0 +1,90 @@
+---
+slidebar_position: 4
+---
+
+# 2.4 ArduSub & ROSMAV
+
+In this section we cover how to connect to the BlueROV2 using a custom `rosmav` interface. This interface uses the `MAVLINK` communication protocal inside of a ROS 2 node to talk to the "*frontseat*" onboard the vehicle.
+
+## Configuring ROSMAV
+
+1. First, create a new virutal environment for the `rosmav` interface.
+
+```zsh
+mkvirtualenv rosmav --system-site-packages
+workon rosmav
+```
+
+2. Install the following libraries in the `rosmav` virtual environment.
+
+```zsh
+pip install cv_bridge numpy pymavlink
+```
+
+3. Now, clone the `rosmav` repository into the `src` directory of your `auvc_ws`.
+
+```zsh
+cd ~/auvc_ws/src && git clone https://github.com/blksaild-edu/rosmav
+```
+
+4. Install ROS 2 dependencies:
+
+```zsh
+cd ../ && rosdep install --from-paths src --ignore-src -r -y
+```
+
+5. Compile the `rosmav` package and source the workspace.
+
+```zsh
+colcon build --packages-select rosmav && source install/setup.zsh
+```
+
+## Launching ROSMAV
+
+After building the `rosmav` package, test the interface by running the following command in a terminal on the backseat:
+
+```zsh
+ros2 run rosmav ros_bluerov2_interface
+```
+
+If the command runs successfully, you should see the following output:
+
+```zsh
+[INFO] [1721669754.194733875] [ros_bluerov2_interface]: Heartbeat from system 1, component 0
+```
+
+
+## Problem Set
+
+For this problem set, please first create a new ROS 2 package named `tutorial_ardusub` to contain any new nodes that you create.
+
+### Problem One
+
+In your `tutorial_ardusub` package, create a new node called `bluerov2_sensors.py`. This node should do the following:
+
+1. Subscribe to the battery sensor messages.
+2. Subscribe to the inertial measurement unit \(IMU\) sensor messages.
+3. Use attributes that are updated on subscription callbacks.
+4. Output a warning in the terminal when the battery has fallen below a safe voltage.
+
+:::info
+
+When both `ArduSub` and `ROSMAV` are running on the `backseat`, the `SITL` will send simulated messages that you can use to test your node.
+
+:::
+
+### Problem Two
+
+Open `QGroundControl` on your Windows or macOs machine. You should see the BlueROV2 somewhere along the United State's west coast. This BlueROV2 is the `SITL` running on the `backseat`.
+
+If it is not already running, start your node from **Problem One**.
+
+In `QGroundControl`, arm the BlueROV2 and change its flight mode to `GUIDED`. Click any arbitrary point in the water and select `Go to location`. After holding down your space bar or dragging the slider, you should see the BlueROV2 moving.
+
+Open a new terminal on the `backseat` and use the `ros2 topic echo` command to inspect the available topics. Also pay attention to your node. What do you observe?
+
+:::warning Check-off
+
+Review with a TA or instructor to check-off this section.
+
+:::

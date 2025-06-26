@@ -1,0 +1,241 @@
+---
+slidebar_position: 3
+---
+
+# 2.3 Virtual Environments
+
+## Virtual Environment Setup
+
+ROS 2 executables can be compiled to run inside of virtual environments if additional changes are made to the package.
+
+1. Create a new virtual environment called `tutorials`. When you create virtual environments for use with ROS 2, you must include the `--system-site-packages` argument.
+
+```zsh
+mkvirtualenv tutorials --system-site-packages
+workon tutorials
+```
+
+:::info
+
+The `--system-site-packages` argument gives the virtual environment access to the system site-packages directory, which is essential for accessing system packages.
+
+:::
+
+2. Install `numpy` in the virtual environment.
+
+```zsh
+pip install numpy
+```
+
+### Package & Node Setup
+
+3. Create a new package in your `auvc_ws` workspace called `tutorial_virtualenvs`.
+
+
+```zsh
+cd ~/auvc_ws/src && ros2 pkg create tutorial_virtualenvs --build-type ament_python
+```
+
+:::info
+
+Compiling ROS 2 executables for virtual environments requires that all nodes in the package use the same virtual environment.
+
+:::
+
+4. Within your package, create a new python file called `virtualenvs.py`.
+
+This file will contain a node that imports numpy from the virtual environment. The node will utilize numpy to perform a quick calculation that is logged to the terminal, and then the node will shutdown.
+
+```py
+
+import rclpy
+from rclpy.node import Node
+
+import numpy as np
+import sys
+
+
+class VirtualEnvironmentsTutorial(Node):
+    """
+    This node demonstrates how ROS 2 packages can be compiled to run executables in a virtual environment.
+    """
+    def __init__(self):
+        super().__init__("tutorial_virtualenvs")
+
+        self.declare_parameter("theta", 3.14159)    # parameter name and default value in radians
+
+        self.theta = self.get_parameter("theta").value
+        self.get_logger().info(sys.executable)
+
+
+    def run(self):
+        """
+        This method logs the sin of the theta parameter using the numpy library to the terminal.
+        """
+        solution = np.sin(self.theta)
+        self.get_logger().info(f"sin({self.theta}) = {solution}")
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = VirtualEnvironmentsTutorial()
+
+    try:
+        node.run()
+    except KeyboardInterrupt:
+        print("\nKeyboardInterrupt received, shutting down...")
+    finally:
+        node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
+```
+
+5. Update `package.xml` and `setup.py`.
+
+In `package.xml`, add the `rclpy` dependency below the license tag.
+
+```xml
+<depend>rclpy</depend>
+```
+
+In `setup.py`, add the executable to console_scripts.
+
+```py
+entry_points={
+    'console_scripts': [
+        'virtualenvs = tutorial_virtualenvs.virtualenvs:main',
+    ],
+},
+```
+{/*
+### Update setup.cfg
+
+6. Ensure the new virtual environment is activated and find the its path with `which python`. The name of the virtual environment will be on the left of the terminal line if it is activated. If it is not activated, first run `workon tutorials`.
+
+7. Modify `setup.cfg` \(setuptools config file\) and add the following lines at the top of the document. **Replace the placeholder path with the path to YOUR virtual environment from the previous step.**
+
+```cfg
+[build_scripts]
+executable=<YOUR_PATH>
+``` */}
+
+6. In `setup.py`, add the following import and lines at the top of the file.
+
+```py
+import os
+
+home_path = os.path.expanduser("~")
+executable_path = os.path.join(home_path, '.virtualenvs', 'tutorials', 'bin', 'python')
+```
+
+The `executable_path` variable in this python code represents your system's path to the the virtual environment called `tutorials`.
+
+:::info
+
+In the future, when you create a new virtual environment for a ROS 2 package, you should follow this same procedure and replace `tutorials` with the name of your virtual environment.
+
+:::
+
+7. In `setup.py`, below the `entry_points` argument, add a new argument called options:
+
+```py
+options={
+    'build_scripts': {
+        'executable': executable_path,
+    }
+},
+```
+
+This option specifies that the package should build the executables to run in the python located at the executable path; i.e., inside your virtual environment.
+
+8. Compile your new package, source the workspace, and then test the node.
+
+To compile the new package, navigate to the workspace directory and run the colcon build command.
+
+```zsh
+cd ~/auvc_ws && colcon build --packages-select tutorial_virtualenvs
+```
+
+Then source the setup.zsh file inside the workspace. *Alternatively, you may source the `.zshrc` file since it will source the workspace.*
+
+```zsh
+source ~/auvc_ws/install/setup.zsh
+```
+
+Lastly, test your node. Try changing the parameter to different values to see if the node behaves as expected.
+
+```zsh
+ros2 run tutorial_virtualenvs virtualenvs --ros-args -p theta:=0.00
+```
+
+## Problem Set
+
+In this problem set, you will use a custom service type provided to you.
+
+Clone the package containing the custom service type into your workspace's `src` directory, then compile the package and source the workspace.
+
+```zsh
+cd ~/auvc_ws/src && git clone https://github.com/blksail-edu/example_custom_srv
+cd ../ && colcon build --packages-select example_custom_srv
+source install/setup.zsh
+```
+
+### Problem One
+
+In your `tutorial_virtualenvs` package, create a new node called `physics_sim.py`. This node will simulate the motion of the BlueROV2 in the 2D plane using code from **Underwater Physics Problem Ten**. This node should meet the following requirements:
+
+1. Create a service using the `SimulateAUV2Motion` service type.
+2. Create a callback function for the service named `run_simulation`.
+3. Run your `simulate_auv2_motion` function in the service's callback function.
+4. Plot the simulated motion and save the plot on the `backseat`.
+
+:::info
+
+In your imports, add the following line:
+
+```py
+from example_custom_srv.srv import SimulateAUV2Motion
+```
+
+Then, in your initializer, create the service using:
+
+```py
+self.srv = self.create_service(
+    SimulateAUV2Motion,    # service type
+    'run_auv2_motion_simulation',    # service name
+    self.run_simulation    # callback method for service
+)
+
+```
+
+Your callback function for a service takes two inputs, a request and a response:
+
+```py
+def run_simulation(self, request, response):
+    try:
+        # REPLACE WITH YOUR CODE
+        #
+        #
+
+        response.success = True
+    except:
+        response.success = False
+
+    return response
+```
+
+Inside the callback funtion, use the request to obtain the inputs for your `simulate_auv2_motion` function \(similarly to how you obtain data from a ROS 2 msg\).
+
+:::
+
+Test your node with the following command:
+
+```zsh
+ros2 service call 'run_auv2_motion_simulation' example_custom_srv/srv/SimulateAUV2Motion "{}"
+```
+
+:::warning check-off
+
+Review with a TA or instructor to check-off before moving on.
+
+:::
