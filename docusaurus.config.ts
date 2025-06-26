@@ -159,7 +159,7 @@ const config: Config = {
             },
             {
               label: "MIT BWSI",
-              href: "https://beaverworks.ll.mit.edu/CMS/bw/bwsi",
+              href: "https://bwsi.mit.edu",
             },
           ],
         },
