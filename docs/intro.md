@@ -43,9 +43,10 @@ This is a chance for you to put your newly acquired skills to test and gain real
 
 - Course Duration: **_4 weeks_**
 
-- Course Schedule: **_Monday to Friday, 9 AM - 5 PM_**
-  - Pool Time: **_9 AM - 12 PM_**
-  - Classroom Time: **_1 PM - 5 PM_**
+- Course Schedule: **_Monday to Friday, 🕘 9AM to 🕔 5PM_**
+  - Pool Time: **_🕘 9AM to 🕛 12PM_**
+  - Lunch & Seminar: **_🕛 12PM to 🕜 1:30PM_**
+  - Classroom: **_🕜1:30PM - 🕔 5PM_**
 
 - Location: **_[24-115, MIT Building 24](https://whereis.mit.edu/?go=24), Cambridge, MA_**
 
@@ -54,6 +55,8 @@ This is a chance for you to put your newly acquired skills to test and gain real
 - Course End Date: **_August 1st, 2025_**
 
 - Demo Day: **_August 2nd, 2025_**
+
+- Awards Ceremony (Virtual): **_August 3nd, 2025_**
 
 ---
 
