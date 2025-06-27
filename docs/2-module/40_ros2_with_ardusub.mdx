@@ -6,13 +6,15 @@ slidebar_position: 4
 
 #### Installing ArduSub
 
-`MAVROS` is a ROS2 package that enables communication between flight control softwares like `ArduSub` and the ROS2 environment. For the purposes of this problem set and future simulations, you must install `ArduSub`. When you interface with the ROVs themselves, you'll connect to a `SITL` running onboard and therefore you will not need to run your own.
+`ROSMAV` is a custom package that enables communication between `ArduSub` and the ROS2 environment. For the purposes of this problem set and future simulations (with QGroundControl), you must install `ArduSub`. When you interface with the ROVs themselves, you'll connect to a `SITL` running onboard and therefore you will not need to run your own.
 
 :::note
 
-You must install ArduSub while you are in a virtual environment
+You must install ArduSub while you are in a virtual environment on the Raspberry Pi
 
 :::
+
+Open VSCode and `ssh` into your Raspberry Pi. Open the terminal to begin installation.
 
 Install `ArduSub` from the official Git repository on the `backseat`.
 
@@ -21,7 +23,13 @@ cd && git clone --recurse-submodules https://github.com/blksail-edu/ardupilot
 cd ~/ardupilot
 ```
 
-Create a new virtual environment for `ArduSub` and install the following dependencies:
+Create a new virtual environment for `ArduSub`.
+
+```zsh
+mkvirtualenv auv-simulator
+```
+
+Install the following dependencies:
 
 ```zsh
 python3 -m pip install empy==3.3.4 pexpect mavproxy future dronecan setuptools
@@ -61,7 +69,7 @@ Unpack the compiler:
 tar -xjvf gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2
 ```
 
-Add the compiler to path on the `backseat` using the following terminal command:
+Add the compiler to path by using the following terminal command:
 
 ```zsh
 echo "PATH=$PATH:$HOME/ardupilot/TARGET_DIR/gcc-arm-none-eabi-10-2020-q4-major/bin" >> ~/.zshrc
@@ -109,7 +117,7 @@ pip install cv_bridge numpy pymavlink
 3. Now, clone the `rosmav` repository into the `src` directory of your `auvc_ws`.
 
 ```zsh
-cd ~/auvc_ws/src && git clone https://github.com/blksaild-edu/rosmav
+cd ~/auvc_ws/src && git clone https://github.com/blksail-edu/rosmav
 ```
 
 4. Install ROS 2 dependencies:
