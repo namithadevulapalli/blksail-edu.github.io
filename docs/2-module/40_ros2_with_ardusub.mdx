@@ -4,6 +4,91 @@ slidebar_position: 4
 
 # 2.4 ArduSub & ROSMAV
 
+#### Installing ArduSub
+
+`MAVROS` is a ROS2 package that enables communication between flight control softwares like `ArduSub` and the ROS2 environment. For the purposes of this problem set and future simulations, you must install `ArduSub`. When you interface with the ROVs themselves, you'll connect to a `SITL` running onboard and therefore you will not need to run your own.
+
+:::note
+
+You must install ArduSub while you are in a virtual environment
+
+:::
+
+Install `ArduSub` from the official Git repository on the `backseat`.
+
+```zsh
+cd && git clone --recurse-submodules https://github.com/blksail-edu/ardupilot
+cd ~/ardupilot
+```
+
+Create a new virtual environment for `ArduSub` and install the following dependencies:
+
+```zsh
+python3 -m pip install empy==3.3.4 pexpect mavproxy future dronecan setuptools
+```
+
+Also install the `ccache` system library:
+
+```zsh
+sudo apt-get install ccache
+```
+
+Now, configure `ArduPilot`:
+
+```zsh
+./waf configure
+. ~/.profile
+./waf clean
+```
+
+On the `backseat`, use the following commands in a terminal to add `ArduPilot` to path:
+
+```zsh
+echo "export PATH=$PATH:$HOME/ardupilot/Tools/autotest" >> ~/.zshrc
+echo "export PATH=/usr/lib/ccache:$PATH" >> ~/.zshrc
+```
+
+Next, install the `gcc-arm cross-compiler`:
+
+```zsh
+cd ~/ardupilot && mkdir TARGET_DIR && cd TARGET_DIR
+wget -c https://firmware.ardupilot.org/Tools/STM32-tools/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2
+```
+
+Unpack the compiler:
+
+```zsh
+tar -xjvf gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2
+```
+
+Add the compiler to path on the `backseat` using the following terminal command:
+
+```zsh
+echo "PATH=$PATH:$HOME/ardupilot/TARGET_DIR/gcc-arm-none-eabi-10-2020-q4-major/bin" >> ~/.zshrc
+```
+
+#### Configuring MAVROS
+
+Before you can use `ArduSub`, you must finalize the `MAVROS` installation. We have preinstalled `MAVORS` on your Raspberry Pi, but you must fun the following commands to install an additional library:
+
+```zsh
+cd && wget https://raw.githubusercontent.com/mavlink/mavros/ros2/mavros/scripts/install_geographiclib_datasets.sh
+chmod +x ./install_geographiclib_datasets.sh
+sudo ./install_geographiclib_datasets.sh
+```
+
+#### Launching ArduSub
+
+Now, in a terminal on the `backseat`, start a `SITL` with the following command:
+
+```zsh
+~/ardupilot/Tools/autotest/sim_vehicle.py --vehicle=ArduSub --aircraft="bwsibot" -L RATBeach --out=udp:YOUR_COMPUTER_IP:14550
+```
+
+:::note Note
+The first time you start the SITL, it may take some time to configure.
+:::
+
 In this section we cover how to connect to the BlueROV2 using a custom `rosmav` interface. This interface uses the `MAVLINK` communication protocal inside of a ROS 2 node to talk to the "*frontseat*" onboard the vehicle.
 
 ## Configuring ROSMAV
