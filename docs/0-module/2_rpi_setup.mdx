@@ -2,7 +2,10 @@
 sidebar_position: 2
 ---
 
-# 0.2 Raspberry Pi Setup
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Raspberry Pi Setup
 
 During this course, we will be using a Raspberry Pi 4B as our main computer.
 This section will walk you through the steps to get your Raspberry Pi up and running.
@@ -52,8 +55,8 @@ We will be using Visual Studio Code to connect to the RPi.
 1. Open Visual Studio Code.
 2. Install the [Remote - SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh) extension.
 3. Click on the `Remote Explorer` icon in the left sidebar.
-4. Click on the `SSH Targets` icon at the top of the sidebar.
-5. Click on the `+` icon at the top of the sidebar.
+4. Select on the `Remotes (Tunnels/SSH)` from the dropdown.
+5. Click on the `+` icon next to `SSH`.
 6. Enter the following command in the input field:
 
 ```bash
@@ -201,3 +204,138 @@ started. It is located in your home directory (`~/.zshrc`).
 You can edit the `.zshrc` file with your favorite text editor.
 
 We will be adding some configuration to the `.zshrc` file in the next sections.
+
+## Assigning the RPi a Static IP
+
+By default, the interface between your Raspberry Pi and local machine will have dynamic IP addresses.
+To simplify future sections of the course, you'll assign a static IP address to the Raspberry Pi.
+
+### Raspberry Pi
+
+Once connected to your Raspberry Pi, open the `/etc/netplan/50-cloud-init.yaml` file using the in-terminal text editor.
+This file is responsible for defining network connections like the `usb0` interface to your local machine and the `wlan0` wifi interface.
+
+```zsh
+sudo nano /etc/netplan/50-cloud-init.yaml
+```
+
+After the file is open, modify the `usb0` interface to look like this:
+
+```yaml
+        usb0:
+            dhcp4: false
+            dhcp6: false
+            addresses:
+            - 192.168.3.2/24
+            match:
+                name: usb0
+            set-name: usb0
+```
+
+:::info
+
+Once the `usb0` interface matches the above code, press **`CTRL + X`** to close the file.
+When you are prompted if you want to save the modified buffer, enter **`y`**.
+Then, press **`enter`** an additional time to save the file using its current path and name.
+
+:::
+
+Apply the changes to the netplan in the same terminal:
+
+```zsh
+sudo netplan apply
+```
+
+### Local Machine
+
+Now, you must also update the interface on your local machine.
+
+:::warning
+
+If you are using **Windows and WSL**, then for this section only, follow the Windows tab rather than the Ubuntu tab.
+
+:::
+
+<Tabs groupId="operating-systems">
+<TabItem value="macos" label="macOS">
+
+Open `System Settings > Network`.
+
+Select the network interface for the Raspberry Pi (likely called `RNDIS/Ethernet Gadget`).
+
+:::info
+
+If you are unsure which interface this is, disconnect the RPi from your laptop.
+This will remove the interface from the list.
+Reconnect the RPi to your laptop and the interface should appear again.
+
+:::
+
+With the correct interface selected, click **`Details...`**.
+
+Under the **`TCP/IP`** tab, set the **`Configure IPv4`** dropdown to **`Manually`**.
+
+Enter the following
+- **`IPv4 Address`** : `192.168.3.1`
+- **`Subnet Mask`**: `255.255.255.0`
+
+Click `OK` to save the settings.
+
+</TabItem>
+<TabItem value="windows" label="Windows">
+
+Open **`Network Connections`**. Find the network interface for the Raspberry Pi.
+
+:::info
+
+This interface should appear as **`USB Ethernet/RNDIS Gadget`**.
+
+If you are unsure which interface this is, disconnect the RPi from your laptop.
+This will remove the interface from the list. Reconnect the RPi to your laptop and the interface should appear again.
+
+:::
+
+Right click on the interface and choose **`Properties`**.
+
+Select **`Internal Protocol Version 4 (TCP/IPv4)`** and click **`Properties`**.
+
+Choose **`Use the following IP address`** and enter the following:
+
+
+- **`IPv4 Address`** : `192.168.3.1`
+- **`Subnet Mask`**: `255.255.255.0`
+
+Click `OK`, then close to apply the settings.
+
+</TabItem>
+<TabItem value="ubuntu" label="Ubuntu">
+
+Open **`Settings`** -> **`Network`**.
+
+Select the interface connected to your Raspberry Pi.
+
+:::info
+
+If you are unsure which interface this is, disconnect the RPi from your laptop.
+This will remove the interface from the list. Reconnect the RPi to your laptop and the interface should appear again.
+
+:::
+
+Click the settings gear icon next to the itnerface.
+
+Go to the **`IPv4 tab`** and set the **`IPv4 Method`** to **`Manual`**.
+
+Click **`Add`** and enter:
+
+
+- **`IPv4 Address`** : `192.168.3.1`
+- **`Subnet Mask`**: `255.255.255.0`
+
+Click `Apply` and reconnect the interface if needed.
+
+</TabItem>
+</Tabs>
+
+#### Testing
+
+Once these steps are complete, you should be able to run `ping 192.168.3.1` from a terminal on the `Raspberry Pi`.
