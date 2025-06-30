@@ -346,67 +346,67 @@ When you are done with the installation process, follow the following steps belo
 <Tabs groupId="network-setup">
 <TabItem value="windows" label="Windows">
 
-1. Go to the Windows **Control Panel** > **Network and Sharing Center**. If not visible, set *View by* to large or small icons.  
+1. Go to the Windows **Control Panel** > **Network and Sharing Center**. If not visible, set *View by* to large or small icons.
    ![Step 1](brov2-windows-network-setup-1.png)
 
-2. Select **Change adapter settings**.  
+2. Select **Change adapter settings**.
    ![Step 2](brov2-windows-network-setup-2.png)
 
-3. Find the **Realtek USB FE Family Controller**, right-click and choose **Properties**.  
+3. Find the **Realtek USB FE Family Controller**, right-click and choose **Properties**.
    ![Step 3](brov2-windows-network-setup-3.png)
 
-4. Select **Internet Protocol Version 4 (TCP/IPv4)** and click **Properties**.  
+4. Select **Internet Protocol Version 4 (TCP/IPv4)** and click **Properties**.
    ![Step 4](brov2-windows-network-setup-4.png)
 
-5. Use the following settings:  
-   - IP Address: `192.168.2.1`  
-   - Subnet Mask: `255.255.255.0`  
+5. Use the following settings:
+   - IP Address: `192.168.2.1`
+   - Subnet Mask: `255.255.255.0`
    ![Step 5](brov2-windows-network-setup-5.png)
 
 #### Firewall Settings
 
-1. Go to **Control Panel** > **Windows Defender Firewall**.  
+1. Go to **Control Panel** > **Windows Defender Firewall**.
    ![Firewall 1](brov2-firewall-setup-1.png)
 
-2. Click **Allow an app or feature through Windows Defender Firewall**.  
+2. Click **Allow an app or feature through Windows Defender Firewall**.
    ![Firewall 2](brov2-firewall-setup-2.png)
 
-3. Click **Change Settings**, find **QGroundControl** and allow it for **Private** and **Public**.  
+3. Click **Change Settings**, find **QGroundControl** and allow it for **Private** and **Public**.
    ![Firewall 3](brov2-firewall-setup-3.png)
 
 </TabItem>
 
 <TabItem value="macos" label="macOS">
 
-1. Go to **System Preferences** > **Network**  
-2. Select **USB 10/100 LAN**  
-3. Set **Configure IPv4** to **Manually**  
-4. Set:  
-   - IP Address: `192.168.2.1`  
-   - Subnet Mask: `255.255.255.0`  
+1. Go to **System Preferences** > **Network**
+2. Select **USB 10/100 LAN**
+3. Set **Configure IPv4** to **Manually**
+4. Set:
+   - IP Address: `192.168.2.1`
+   - Subnet Mask: `255.255.255.0`
    ![macOS Network Settings](mac-network-settings-annotated.png)
 
 </TabItem>
 
 <TabItem value="ubuntu" label="Linux">
 
-1. Click the Network icon > **Edit Connections...**  
+1. Click the Network icon > **Edit Connections...**
    ![Linux 1](LinuxStep1.png)
 
-2. Click **Add**  
+2. Click **Add**
    ![Linux 2](LinuxStep2.png)
 
-3. Select **Ethernet** and click **Create...**  
+3. Select **Ethernet** and click **Create...**
    ![Linux 3](LinuxStep3.png)
 
-4. Choose your Ethernet adapter from **Device MAC Address**  
+4. Choose your Ethernet adapter from **Device MAC Address**
    ![Linux 4](LinuxStep4.png)
 
-5. Go to **IPv4 Settings**, set method to **Manual**, and enter:  
-   - Address: `192.168.2.1`  
-   - Netmask: `255.255.255.0`  
-   - Gateway: `0.0.0.0`  
-   Click **Save...**  
+5. Go to **IPv4 Settings**, set method to **Manual**, and enter:
+   - Address: `192.168.2.1`
+   - Netmask: `255.255.255.0`
+   - Gateway: `0.0.0.0`
+   Click **Save...**
    ![Linux 5](LinuxStep5.png)
 
 </TabItem>
@@ -414,9 +414,11 @@ When you are done with the installation process, follow the following steps belo
 
 ### Connecting to QGroundControl
 
-1. With the BlueROV2 still connected and powered on, start the QGroundControl application.  
+1. With the BlueROV2 still connected and powered on, start the QGroundControl application.
 2. Wait a few seconds for the ROV to auto-connect and for the green parameters bar to finish loading from left to right.
 
 :::note
+
 If this is the first time setting up the ROV, you will receive a message that additional setup is required.
+
 :::
