@@ -67,32 +67,6 @@ source ~/.zshrc
 workon ardusub
 ```
 
-Next, install the `gcc-arm cross-compiler`:
-
-```zsh
-cd ~/ardupilot && mkdir TARGET_DIR && cd TARGET_DIR
-wget -c https://firmware.ardupilot.org/Tools/STM32-tools/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2
-```
-
-Unpack the compiler:
-
-```zsh
-tar -xjvf gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2
-```
-
-With your favorite text editor, add the following line to the `.zshrc` file on the `backseat` to add the compiler to path:
-
-```zsh
-export PATH=$PATH:$HOME/ardupilot/TARGET_DIR/gcc-arm-none-eabi-10-2020-q4-major/bin
-```
-
-Then, source the `.zshrc` file again and reactivate the `ardusub` virtual environment:
-
-```zsh
-source ~/.zshrc
-workon ardusub
-```
-
 Lastly, install the geographic library datasets:
 
 ```zsh
@@ -103,10 +77,10 @@ sudo ./install_geographiclib_datasets.sh
 
 ## Testing ArduSub
 
-In a terminal on the `backseat`, you may now start the software in the loop (SITL).
+In a terminal on the `backseat`, you may now start the software in the loop (`SITL`).
 
 :::info
-The first time you start the SITL, it will approximately 30 minutes to configure.
+The first time you start the `SITL`, it may take up to 30 minutes to configure.
 :::
 
 ```zsh
